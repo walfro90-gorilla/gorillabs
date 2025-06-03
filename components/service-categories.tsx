@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import Link from "next/link"
 import { Card, CardContent } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -11,28 +11,6 @@ import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 const ServiceCategories = () => {
   const { translations } = useLanguage()
   const [activeTab, setActiveTab] = useState("all")
-
-  useEffect(() => {
-    if (window.innerWidth < 768) {
-      // Mobile only
-      const interval = setInterval(() => {
-        const scrollArea = document.querySelector(".scroll-area-mobile")
-        if (scrollArea) {
-          const currentScroll = scrollArea.scrollLeft
-          const maxScroll = scrollArea.scrollWidth - scrollArea.clientWidth
-          const nextScroll = currentScroll + 200
-
-          if (nextScroll >= maxScroll) {
-            scrollArea.scrollTo({ left: 0, behavior: "smooth" })
-          } else {
-            scrollArea.scrollTo({ left: nextScroll, behavior: "smooth" })
-          }
-        }
-      }, 3000)
-
-      return () => clearInterval(interval)
-    }
-  }, [])
 
   const categories = [
     {
@@ -112,23 +90,20 @@ const ServiceCategories = () => {
             ))}
           </div>
 
-          {/* Mobile View - Carousel */}
+          {/* Mobile View - 2 per row grid */}
           <div className="md:hidden">
-            <ScrollArea className="w-full scroll-area-mobile">
-              <div className="flex gap-4 pb-4">
-                {filteredCategories.map((category) => (
-                  <Link key={category.id} href={category.link}>
-                    <Card className="service-card w-48 flex-shrink-0 transition-all duration-300 hover:border-primary">
-                      <CardContent className="flex flex-col items-center p-4 text-center">
-                        <div className="mb-3 rounded-full bg-primary/10 p-2">{category.icon}</div>
-                        <h3 className="text-sm font-bold">{category.title}</h3>
-                      </CardContent>
-                    </Card>
-                  </Link>
-                ))}
-              </div>
-              <ScrollBar orientation="horizontal" />
-            </ScrollArea>
+            <div className="grid grid-cols-2 gap-4">
+              {filteredCategories.map((category) => (
+                <Link key={category.id} href={category.link}>
+                  <Card className="service-card transition-all duration-300 hover:border-primary">
+                    <CardContent className="flex flex-col items-center p-4 text-center">
+                      <div className="mb-3 rounded-full bg-primary/10 p-2">{category.icon}</div>
+                      <h3 className="text-sm font-bold">{category.title}</h3>
+                    </CardContent>
+                  </Card>
+                </Link>
+              ))}
+            </div>
           </div>
         </TabsContent>
       </Tabs>
