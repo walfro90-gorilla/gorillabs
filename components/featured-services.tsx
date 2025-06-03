@@ -52,7 +52,7 @@ const FeaturedServices = () => {
       id: "mobile-app",
       title: translations.featuredServices.mobileApp,
       description: translations.featuredServices.mobileAppDesc,
-      price: 45/hour,
+      price: 45,
       image: "https://res.cloudinary.com/dgmmzh8nb/image/upload/v1748983652/hxuxxifnwc6jsxrxbmqj.png",
       category: "mobile",
       featured: true,
