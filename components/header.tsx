@@ -20,6 +20,7 @@ const Header = () => {
   const { user, logout } = useAuth()
   const { language, setLanguage, translations } = useLanguage()
   const isMobile = useMobile()
+  const [scrolled, setScrolled] = useState(false)
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
@@ -44,6 +45,23 @@ const Header = () => {
     }
   }, [isMenuOpen])
 
+  // Track scroll position
+  useEffect(() => {
+    const handleScroll = () => {
+      const offset = window.scrollY
+      if (offset > 10) {
+        setScrolled(true)
+      } else {
+        setScrolled(false)
+      }
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+    }
+  }, [])
+
   const navLinks = [
     { href: "/", label: translations.nav.home },
     { href: "/services", label: translations.nav.services },
@@ -54,8 +72,16 @@ const Header = () => {
   ]
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center justify-between px-4 md:px-6">
+    <header
+      className={`sticky top-0 z-50 w-full border-b backdrop-blur supports-[backdrop-filter]:bg-background/60 transition-all duration-300 ${
+        scrolled ? "bg-background/95 shadow-md" : "bg-background/80"
+      }`}
+    >
+      <div
+        className={`container flex items-center justify-between px-4 md:px-6 transition-all duration-300 ${
+          scrolled ? "h-14" : "h-16"
+        }`}
+      >
         <Link href="/" className="flex items-center gap-2">
           <Image
             src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/glabs-logo.jpg-hrzbXAlZYwpe9notvpjbnI7ZB1vNWW.jpeg"
