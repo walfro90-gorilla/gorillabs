@@ -16,7 +16,7 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "Gorilla Labs | Desarrollo de Apps y Software IA - El Paso TX & Cd. Juárez",
   description:
-    "Empresa de desarrollo de software en El Paso Texas y Ciudad Juárez. Creamos apps móviles, software a la medida, e-commerce, websites y soluciones de IA para empresas.",
+    "Starup de desarrollo de software en El Paso Texas y Ciudad Juárez. Creamos apps móviles, software a la medida, e-commerce, websites y soluciones de IA para empresas.",
   keywords:
     "desarrollo de apps El Paso, software a la medida Ciudad Juárez, e-commerce El Paso Texas, desarrollo web Juárez Chihuahua, inteligencia artificial El Paso, programación software Juárez, aplicaciones móviles frontera México USA, desarrollo web El Paso TX, software empresarial Ciudad Juárez, soluciones tecnológicas frontera, desarrollo de aplicaciones El Paso Texas, software personalizado Juárez México, tiendas online El Paso, páginas web Ciudad Juárez, IA empresarial frontera",
   authors: [{ name: "Gorilla Labs" }],
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     url: "https://gorilla-labs.com",
     title: "Gorilla Labs | Desarrollo de Apps y Software IA - El Paso TX & Cd. Juárez",
     description:
-      "Empresa líder en desarrollo de software en El Paso Texas y Ciudad Juárez. Especialistas en apps móviles, software a la medida, e-commerce, websites y soluciones de IA.",
+      "Startup líder en desarrollo de software en El Paso Texas y Ciudad Juárez. Especialistas en apps móviles, software a la medida, e-commerce, websites y soluciones de IA.",
     siteName: "Gorilla Labs",
     images: [
       {
