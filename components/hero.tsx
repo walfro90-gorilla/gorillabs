@@ -73,7 +73,9 @@ const Hero = () => {
 
       {/* Content */}
       <div className="container relative z-10 flex flex-col items-center justify-center gap-8 text-center">
-        <h1 className="text-4xl font-bold leading-tight md:text-5xl lg:text-6xl">{translations.hero.title}</h1>
+        <h1 className="text-4xl font-bold leading-tight text-white dark:text-white md:text-5xl lg:text-6xl">
+          {translations.hero.title}
+        </h1>
 
         <div className="h-20">
           <h2 className="text-2xl font-medium text-primary md:text-3xl">

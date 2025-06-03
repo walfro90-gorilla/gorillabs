@@ -53,8 +53,8 @@ export default function ServicesPage() {
               languageContext.language === "en"
                 ? "Custom website development tailored to your business needs."
                 : "Desarrollo de sitios web personalizados adaptados a las necesidades de su negocio.",
-            price: 1500,
-            image: "/placeholder.svg?height=200&width=300",
+            price: 1200,
+            image: "https://res.cloudinary.com/dgmmzh8nb/image/upload/v1748983315/syf7khoovwrnewmaigin.png",
             category: "web",
           },
           {
@@ -64,8 +64,8 @@ export default function ServicesPage() {
               languageContext.language === "en"
                 ? "Full-featured online stores with secure payment processing."
                 : "Tiendas en línea completas con procesamiento de pagos seguro.",
-            price: 2500,
-            image: "/placeholder.svg?height=200&width=300",
+            price: 1600,
+            image: "https://res.cloudinary.com/dgmmzh8nb/image/upload/v1748983470/c29i1t0ne1rnmjwjpjtf.png",
             category: "ecommerce",
           },
           {
@@ -75,8 +75,8 @@ export default function ServicesPage() {
               languageContext.language === "en"
                 ? "Native and cross-platform mobile applications for iOS and Android."
                 : "Aplicaciones móviles nativas y multiplataforma para iOS y Android.",
-            price: 3500,
-            image: "/placeholder.svg?height=200&width=300",
+            price: 45,
+            image: "https://res.cloudinary.com/dgmmzh8nb/image/upload/v1748983652/hxuxxifnwc6jsxrxbmqj.png",
             category: "app",
           },
           {
@@ -293,7 +293,7 @@ export default function ServicesPage() {
               <CardHeader>
                 <CardTitle>{service.title}</CardTitle>
                 <CardDescription>
-                  {t("services.price", "Price")}: ${service.price}
+                  {t("services.price", "Price")}: {service.id === "3" ? `$${service.price}/hour` : `$${service.price}`}
                 </CardDescription>
               </CardHeader>
               <CardContent className="flex-grow">
