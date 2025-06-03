@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect, useRef } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
@@ -60,6 +60,9 @@ const FeaturedServices = () => {
     },
   ])
 
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const intervalRef = useRef<NodeJS.Timeout | null>(null)
+
   const handleAddToCart = (service: Service) => {
     addToCart({
       id: service.id,
@@ -74,6 +77,37 @@ const FeaturedServices = () => {
       description: service.title,
     })
   }
+
+  useEffect(() => {
+    const startAutoPlay = () => {
+      intervalRef.current = setInterval(() => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % services.length)
+      }, 2500)
+    }
+
+    const stopAutoPlay = () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current)
+      }
+    }
+
+    // Only start autoplay on mobile
+    const checkMobile = () => {
+      if (window.innerWidth < 768) {
+        startAutoPlay()
+      } else {
+        stopAutoPlay()
+      }
+    }
+
+    checkMobile()
+    window.addEventListener("resize", checkMobile)
+
+    return () => {
+      stopAutoPlay()
+      window.removeEventListener("resize", checkMobile)
+    }
+  }, [services.length])
 
   return (
     <div className="container">
@@ -90,52 +124,127 @@ const FeaturedServices = () => {
         </Link>
       </div>
 
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {services.map((service) => (
-          <Card key={service.id} className="service-card overflow-hidden transition-all duration-300">
-            <div className="relative h-48 w-full overflow-hidden">
-              <Image
-                src={service.image || "/placeholder.svg"}
-                alt={service.title}
-                fill
-                className="object-cover transition-transform duration-300 hover:scale-105"
-              />
-              <Badge className="absolute right-2 top-2 bg-primary text-primary-foreground">
-                {translations.featuredServices.featured}
-              </Badge>
-            </div>
-
-            <CardContent className="p-6">
-              <div className="mb-2 flex items-center gap-1">
-                {[...Array(5)].map((_, i) => (
-                  <Star
-                    key={i}
-                    className={`h-4 w-4 ${
-                      i < Math.floor(service.rating) ? "fill-primary text-primary" : "fill-muted text-muted"
-                    }`}
-                  />
-                ))}
-                <span className="ml-1 text-sm text-muted-foreground">{service.rating}</span>
+      <div className="relative">
+        {/* Desktop Grid */}
+        <div className="hidden md:grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {services.map((service) => (
+            <Card key={service.id} className="service-card overflow-hidden transition-all duration-300">
+              <div className="relative h-48 w-full overflow-hidden">
+                <Image
+                  src={service.image || "/placeholder.svg"}
+                  alt={service.title}
+                  fill
+                  className="object-cover transition-transform duration-300 hover:scale-105"
+                />
+                <Badge className="absolute right-2 top-2 bg-primary text-primary-foreground">
+                  {translations.featuredServices.featured}
+                </Badge>
               </div>
 
-              <h3 className="mb-2 text-xl font-bold">{service.title}</h3>
-              <p className="mb-4 text-muted-foreground">{service.description}</p>
-              <p className="text-2xl font-bold text-primary">${service.price}</p>
-            </CardContent>
+              <CardContent className="p-6">
+                <div className="mb-2 flex items-center gap-1">
+                  {[...Array(5)].map((_, i) => (
+                    <Star
+                      key={i}
+                      className={`h-4 w-4 ${
+                        i < Math.floor(service.rating) ? "fill-primary text-primary" : "fill-muted text-muted"
+                      }`}
+                    />
+                  ))}
+                  <span className="ml-1 text-sm text-muted-foreground">{service.rating}</span>
+                </div>
 
-            <CardFooter className="flex gap-2 p-6 pt-0">
-              <Button variant="outline" className="flex-1 gap-2" onClick={() => handleAddToCart(service)}>
-                <ShoppingCart className="h-4 w-4" />
-                {translations.cart.addToCart}
-              </Button>
-              <Link href={`/services/${service.id}`} className="flex-1">
-                <Button variant="default" className="w-full">
-                  {translations.featuredServices.details}
+                <h3 className="mb-2 text-xl font-bold">{service.title}</h3>
+                <p className="mb-4 text-muted-foreground">{service.description}</p>
+                <p className="text-2xl font-bold text-primary">${service.price}</p>
+              </CardContent>
+
+              <CardFooter className="flex gap-2 p-6 pt-0">
+                <Button variant="outline" className="flex-1 gap-2" onClick={() => handleAddToCart(service)}>
+                  <ShoppingCart className="h-4 w-4" />
+                  {translations.cart.addToCart}
                 </Button>
-              </Link>
-            </CardFooter>
-          </Card>
-        ))}
+                <Link href={`/services/${service.id}`} className="flex-1">
+                  <Button variant="default" className="w-full">
+                    {translations.featuredServices.details}
+                  </Button>
+                </Link>
+              </CardFooter>
+            </Card>
+          ))}
+        </div>
+
+        {/* Mobile Carousel */}
+        <div className="md:hidden overflow-hidden">
+          <div
+            className="flex transition-transform duration-500 ease-in-out"
+            style={{
+              transform: `translateX(-${currentIndex * 83.33}%)`,
+              width: `${services.length * 83.33}%`,
+            }}
+          >
+            {services.map((service) => (
+              <div key={service.id} className="w-full px-2" style={{ width: "83.33%" }}>
+                <Card className="service-card overflow-hidden transition-all duration-300">
+                  <div className="relative h-48 w-full overflow-hidden">
+                    <Image
+                      src={service.image || "/placeholder.svg"}
+                      alt={service.title}
+                      fill
+                      className="object-cover transition-transform duration-300 hover:scale-105"
+                    />
+                    <Badge className="absolute right-2 top-2 bg-primary text-primary-foreground">
+                      {translations.featuredServices.featured}
+                    </Badge>
+                  </div>
+
+                  <CardContent className="p-6">
+                    <div className="mb-2 flex items-center gap-1">
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className={`h-4 w-4 ${
+                            i < Math.floor(service.rating) ? "fill-primary text-primary" : "fill-muted text-muted"
+                          }`}
+                        />
+                      ))}
+                      <span className="ml-1 text-sm text-muted-foreground">{service.rating}</span>
+                    </div>
+
+                    <h3 className="mb-2 text-xl font-bold">{service.title}</h3>
+                    <p className="mb-4 text-muted-foreground">{service.description}</p>
+                    <p className="text-2xl font-bold text-primary">${service.price}</p>
+                  </CardContent>
+
+                  <CardFooter className="flex gap-2 p-6 pt-0">
+                    <Button variant="outline" className="flex-1 gap-2" onClick={() => handleAddToCart(service)}>
+                      <ShoppingCart className="h-4 w-4" />
+                      {translations.cart.addToCart}
+                    </Button>
+                    <Link href={`/services/${service.id}`} className="flex-1">
+                      <Button variant="default" className="w-full">
+                        {translations.featuredServices.details}
+                      </Button>
+                    </Link>
+                  </CardFooter>
+                </Card>
+              </div>
+            ))}
+          </div>
+
+          {/* Carousel Indicators */}
+          <div className="flex justify-center mt-4 space-x-2">
+            {services.map((_, index) => (
+              <button
+                key={index}
+                className={`w-2 h-2 rounded-full transition-colors ${
+                  index === currentIndex ? "bg-primary" : "bg-gray-300"
+                }`}
+                onClick={() => setCurrentIndex(index)}
+              />
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   )
