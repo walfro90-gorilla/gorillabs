@@ -177,7 +177,7 @@ const FeaturedServices = () => {
         {/* Mobile Carousel */}
         <div className="md:hidden overflow-hidden">
           <div
-            className="flex transition-transform duration-500 ease-in-out"
+            className="flex transition-transform duration-700 ease-in-out"
             style={{
               transform: `translateX(-${currentIndex * 100}%)`,
               width: `${services.length * 100}%`,
