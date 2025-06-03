@@ -63,7 +63,7 @@ const ServiceCategories = () => {
       <Tabs defaultValue="all" value={activeTab} onValueChange={setActiveTab}>
         <div className="relative">
           <ScrollArea className="w-full whitespace-nowrap pb-4">
-            <TabsList className="inline-flex w-max">
+            <TabsList className="flex w-full justify-center">
               <TabsTrigger value="all">{translations.services.all}</TabsTrigger>
               <TabsTrigger value="mobile">{translations.services.mobile}</TabsTrigger>
               <TabsTrigger value="ecommerce">{translations.services.ecomm}</TabsTrigger>
