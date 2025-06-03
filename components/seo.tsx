@@ -33,4 +33,3 @@ export default function SEO({ title, description, canonical, ogImage }: SEOProps
 
 // Add named export for compatibility
 export const Seo = SEO
-

@@ -125,4 +125,3 @@ const GameSection = () => {
 }
 
 export default GameSection
-

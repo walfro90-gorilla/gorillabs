@@ -36,4 +36,3 @@ export function ModeToggle({ closeMenu }: ModeToggleProps) {
     </DropdownMenu>
   )
 }
-

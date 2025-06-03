@@ -828,4 +828,3 @@ export default function SeoAdminPage() {
     </div>
   )
 }
-

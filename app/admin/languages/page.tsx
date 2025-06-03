@@ -815,4 +815,3 @@ export default function LanguagesPage() {
     </div>
   )
 }
-

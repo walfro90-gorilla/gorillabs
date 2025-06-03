@@ -254,4 +254,3 @@ export function SalesPipeline({ compact = false }: SalesPipelineProps) {
     </ScrollArea>
   )
 }
-

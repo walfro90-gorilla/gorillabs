@@ -216,4 +216,3 @@ export function RecentLeads({ extended = false }: RecentLeadsProps) {
     </div>
   )
 }
-

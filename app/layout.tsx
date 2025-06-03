@@ -14,35 +14,39 @@ import { LanguageProvider } from "@/context/language-context"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Centro de Visas | Servicios Migratorios",
-  description: "Centro especializado en trámites y servicios de visas para diferentes países.",
-  keywords: "visas, trámites migratorios, pasaportes, servicios consulares",
-  authors: [{ name: "Centro de Visas" }],
-  creator: "Centro de Visas",
-  publisher: "Centro de Visas",
+  title: "Gorilla Labs | Soluciones Tecnológicas IA",
+  description:
+    "Transformamos tus ideas en soluciones tecnológicas con inteligencia artificial. Desarrollo web, ecommerce y aplicaciones móviles.",
+  keywords:
+    "desarrollo web, ecommerce, aplicaciones móviles, inteligencia artificial, soluciones tecnológicas, IA, marketing digital",
+  authors: [{ name: "Gorilla Labs" }],
+  creator: "Gorilla Labs",
+  publisher: "Gorilla Labs",
   viewport: "width=device-width, initial-scale=1, maximum-scale=5",
   openGraph: {
     type: "website",
     locale: "es_ES",
-    url: "https://centrodevisas.com",
-    title: "Centro de Visas | Servicios Migratorios",
-    description: "Centro especializado en trámites y servicios de visas para diferentes países.",
-    siteName: "Centro de Visas",
+    url: "https://gorilla-labs.com",
+    title: "Gorilla Labs | Soluciones Tecnológicas IA",
+    description:
+      "Transformamos tus ideas en soluciones tecnológicas con inteligencia artificial. Desarrollo web, ecommerce y aplicaciones móviles.",
+    siteName: "Gorilla Labs",
     images: [
       {
-        url: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/visas_center-logo-TWDMZXAfZaJw0v8mfYNKXKPBUt17vA.png",
+        url: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/glabs-logo.jpg-hrzbXAlZYwpe9notvpjbnI7ZB1vNWW.jpeg",
         width: 1200,
         height: 630,
-        alt: "Centro de Visas Logo",
+        alt: "Gorilla Labs Logo",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Centro de Visas | Servicios Migratorios",
-    description: "Centro especializado en trámites y servicios de visas para diferentes países.",
+    title: "Gorilla Labs | Soluciones Tecnológicas IA",
+    description:
+      "Transformamos tus ideas en soluciones tecnológicas con inteligencia artificial. Desarrollo web, ecommerce y aplicaciones móviles.",
     images: [
-      "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/visas_center-logo-TWDMZXAfZaJw0v8mfYNKXKPBUt17vA.png",
+      "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/glabs-logo.jpg-hrzbXAlZYwpe9notvpjbnI7ZB1vNWW.jpeg",
     ],
   },
     generator: 'v0.dev'
@@ -75,4 +79,3 @@ export default function RootLayout({
     </html>
   )
 }
-

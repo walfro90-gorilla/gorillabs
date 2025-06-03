@@ -66,4 +66,3 @@ const CountdownTimer = ({ targetDate, title }: CountdownTimerProps) => {
 }
 
 export default CountdownTimer
-

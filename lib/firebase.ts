@@ -69,4 +69,3 @@ if (app) {
 const isFirebaseInitialized = !!app
 
 export { auth, googleProvider, facebookProvider, isFirebaseInitialized }
-

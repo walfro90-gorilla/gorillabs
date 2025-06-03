@@ -32,4 +32,3 @@ export function UserAvatar({ user, className }: UserAvatarProps) {
     </Avatar>
   )
 }
-
