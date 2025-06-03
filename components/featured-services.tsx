@@ -82,7 +82,7 @@ const FeaturedServices = () => {
     const startAutoPlay = () => {
       intervalRef.current = setInterval(() => {
         setCurrentIndex((prevIndex) => (prevIndex + 1) % services.length)
-      }, 2500)
+      }, 2600)
     }
 
     const stopAutoPlay = () => {
@@ -179,12 +179,12 @@ const FeaturedServices = () => {
           <div
             className="flex transition-transform duration-500 ease-in-out"
             style={{
-              transform: `translateX(-${currentIndex * 83.33}%)`,
-              width: `${services.length * 83.33}%`,
+              transform: `translateX(-${currentIndex * 100}%)`,
+              width: `${services.length * 100}%`,
             }}
           >
             {services.map((service) => (
-              <div key={service.id} className="w-full px-2" style={{ width: "83.33%" }}>
+              <div key={service.id} className="w-full px-2" style={{ width: "100%" }}>
                 <Card className="service-card overflow-hidden transition-all duration-300">
                   <div className="relative h-48 w-full overflow-hidden">
                     <Image
