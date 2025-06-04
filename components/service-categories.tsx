@@ -1,16 +1,47 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import { Card, CardContent } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useLanguage } from "@/context/language-context"
 import { Smartphone, ShoppingBag, TrendingUp, Factory, Code } from "lucide-react"
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
+import confetti from "canvas-confetti"
 
 const ServiceCategories = () => {
   const { translations } = useLanguage()
   const [activeTab, setActiveTab] = useState("all")
+  const sectionRef = useRef(null)
+  const [hasTriggeredConfetti, setHasTriggeredConfetti] = useState(false)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries
+        if (entry.isIntersecting && !hasTriggeredConfetti) {
+          // Trigger confetti when the section comes into view
+          confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 },
+          })
+          setHasTriggeredConfetti(true)
+        }
+      },
+      { threshold: 0.3 }, // Trigger when 30% of the element is visible
+    )
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current)
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current)
+      }
+    }
+  }, [hasTriggeredConfetti])
 
   const categories = [
     {
@@ -54,7 +85,7 @@ const ServiceCategories = () => {
     activeTab === "all" ? categories : categories.filter((category) => category.id === activeTab)
 
   return (
-    <div className="container px-4 md:px-6">
+    <div className="container px-4 md:px-6" ref={sectionRef}>
       <div className="mb-10 text-center">
         <h2 className="mb-2 text-2xl md:text-3xl font-bold">{translations.services.title}</h2>
         <p className="mx-auto max-w-2xl text-muted-foreground">{translations.services.subtitle}</p>
