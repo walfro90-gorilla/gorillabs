@@ -219,9 +219,9 @@ const translations: Record<Language, Translations> = {
       home: "Inicio",
       services: "Servicios",
       portfolio: "Portafolio",
-      about: "Nosotros",
+      // about: "Nosotros",
       contact: "Contacto",
-      blog: "Blog",
+      // blog: "Blog",
     },
     auth: {
       login: "Iniciar Sesión",

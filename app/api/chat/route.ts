@@ -9,7 +9,7 @@ Company Information:
 - Location: El Paso, Texas & Ciudad Juárez, Mexico
 - Services: Web Development, E-commerce Solutions, Mobile App Development, Digital Marketing
 - Pricing: Basic Website ($1,200), E-commerce Standard ($1,600), Mobile App Development ($45/hour)
-- Contact: info@gorilla-labs.com, +1 (234) 567-890
+- Contact: info@gorillabs.dev, +52 (656) 573 1023
 
 Always respond in a helpful, professional manner. If asked about services, pricing, or contact information, provide accurate details. If you don't know something specific about the company, direct them to contact the team directly.`
 }
@@ -23,7 +23,7 @@ const getFallbackResponse = (message: string, language: string) => {
     if (lowerMessage.includes("pricing") || lowerMessage.includes("cost") || lowerMessage.includes("price")) {
       return "Our pricing varies depending on the specific requirements of your project. For a basic website, prices start at $1,200. For e-commerce solutions, prices start at $1,600. Mobile app development is charged at $45/hour. Would you like to schedule a consultation for a personalized quote?"
     } else if (lowerMessage.includes("contact") || lowerMessage.includes("talk") || lowerMessage.includes("call")) {
-      return "You can reach our team at info@gorilla-labs.com or call us at +1 (234) 567-890. We're located in El Paso, Texas & Ciudad Juárez, Mexico. We'd love to discuss your project!"
+      return "You can reach our team at info@gorillabs.dev or call us at +52 (656) 573 1023. We're located in El Paso, Texas & Ciudad Juárez, Mexico. We'd love to discuss your project!"
     } else if (lowerMessage.includes("service") || lowerMessage.includes("offer") || lowerMessage.includes("what")) {
       return "We offer comprehensive technology solutions including: Web Development (custom websites, responsive design), E-commerce Solutions (online stores, payment integration), Mobile App Development (iOS & Android), and Digital Marketing. Each service is tailored to your business needs."
     } else if (
@@ -55,7 +55,7 @@ const getFallbackResponse = (message: string, language: string) => {
       lowerMessage.includes("hablar") ||
       lowerMessage.includes("llamar")
     ) {
-      return "Puedes contactar a nuestro equipo en info@gorilla-labs.com o llamarnos al +1 (234) 567-890. Estamos ubicados en El Paso, Texas y Ciudad Juárez, México. ¡Nos encantaría discutir tu proyecto!"
+      return "Puedes contactar a nuestro equipo en info@gorillabs.dev o llamarnos al +52 (656) 573 1023. Estamos ubicados en El Paso, Texas y Ciudad Juárez, México. ¡Nos encantaría discutir tu proyecto!"
     } else if (lowerMessage.includes("servicio") || lowerMessage.includes("ofrece") || lowerMessage.includes("qué")) {
       return "Ofrecemos soluciones tecnológicas integrales que incluyen: Desarrollo Web (sitios web personalizados, diseño responsivo), Soluciones de E-commerce (tiendas en línea, integración de pagos), Desarrollo de Apps Móviles (iOS y Android), y Marketing Digital. Cada servicio está adaptado a las necesidades de tu negocio."
     } else if (
@@ -160,8 +160,8 @@ export async function POST(request: NextRequest) {
     const { language } = await request.json().catch(() => ({ language: "en" }))
     const fallbackResponse =
       language === "en"
-        ? "I'm sorry, I'm having technical difficulties right now. Please contact our team directly at info@gorilla-labs.com or call +1 (234) 567-890 for immediate assistance."
-        : "Lo siento, tengo dificultades técnicas en este momento. Por favor contacta directamente a nuestro equipo en info@gorilla-labs.com o llama al +1 (234) 567-890 para asistencia inmediata."
+        ? "I'm sorry, I'm having technical difficulties right now. Please contact our team directly at info@gorillabs.dev or call +52 (656) 573 1023 for immediate assistance."
+        : "Lo siento, tengo dificultades técnicas en este momento. Por favor contacta directamente a nuestro equipo en info@gorillabs.dev o llama al +52 (656) 573 1023 para asistencia inmediata."
 
     return NextResponse.json({ response: fallbackResponse, source: "error" })
   }

@@ -33,7 +33,7 @@ export default function ChatbotConfigPage() {
     location: "El Paso, Texas & Ciudad Juárez, Mexico",
     services: "Web Development, E-commerce Solutions, Mobile App Development, Digital Marketing",
     pricing: "Basic Website ($1,200), E-commerce Standard ($1,600), Mobile App Development ($45/hour)",
-    contactInfo: "info@gorilla-labs.com, +1 (234) 567-890",
+    contactInfo: "info@gorillabs.dev, +52 (656) 573 1023",
     customInstructions:
       "Always respond in a helpful, professional manner. Focus on understanding client needs and directing them to appropriate services.",
     model: "gemini-1.5-flash-latest",

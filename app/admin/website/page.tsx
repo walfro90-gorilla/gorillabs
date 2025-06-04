@@ -53,9 +53,9 @@ export default function WebsiteContentPage() {
 
   // Contact information
   const [contactInfo, setContactInfo] = useState({
-    email: "info@gorilla-labs.com",
-    phone: "+1 (234) 567-890",
-    address: "123 Tech Street, Innovation District, City, State 12345",
+    email: "info@gorillabs.dev",
+    phone: "+52 (656) 573 1023",
+    address: "Avenida Paseo Triunfo de la Republica, Cd Juarez, Chih, Mexico",
     businessHours: {
       weekdays: "9am - 6pm",
       saturday: "10am - 2pm",

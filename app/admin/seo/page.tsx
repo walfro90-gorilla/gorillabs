@@ -142,7 +142,7 @@ const defaultSettings: SeoSettings = {
     organizationLogo:
       "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/glabs-logo.jpg-hrzbXAlZYwpe9notvpjbnI7ZB1vNWW.jpeg",
     contactType: "customer service",
-    contactEmail: "info@gorilla-labs.com",
+    contactEmail: "info@gorillabs.dev",
     contactPhone: "+1234567890",
   },
 }

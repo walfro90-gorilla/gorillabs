@@ -58,9 +58,9 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="text-gray-400 hover:text-primary">
+                {/* <Link href="/about" className="text-gray-400 hover:text-primary">
                   {translations.nav.about}
-                </Link>
+                </Link> */}
               </li>
               <li>
                 <Link href="/contact" className="text-gray-400 hover:text-primary">
@@ -68,9 +68,9 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/blog" className="text-gray-400 hover:text-primary">
+                {/* <Link href="/blog" className="text-gray-400 hover:text-primary">
                   {translations.nav.blog}
-                </Link>
+                </Link> */}
               </li>
             </ul>
           </div>
@@ -113,18 +113,18 @@ const Footer = () => {
             <ul className="flex flex-col gap-4">
               <li className="flex items-start gap-2">
                 <MapPin className="h-5 w-5 text-primary" />
-                <span className="text-gray-400">123 Tech Street, Innovation District, 12345</span>
+                <span className="text-gray-400">Avenida Paseo Triunfo de la Republica, 3200</span>
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="h-5 w-5 text-primary" />
                 <a href="tel:+1234567890" className="text-gray-400 hover:text-primary">
-                  +1 (234) 567-890
+                 +52 (656) 573 1023
                 </a>
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="h-5 w-5 text-primary" />
-                <a href="mailto:info@gorilla-labs.com" className="text-gray-400 hover:text-primary">
-                  info@gorilla-labs.com
+                <a href="mailto:info@gorillabs.dev" className="text-gray-400 hover:text-primary">
+                  info@gorillabs.dev
                 </a>
               </li>
             </ul>

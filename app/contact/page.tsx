@@ -90,8 +90,8 @@ export default function ContactPage() {
                 <Mail className="mt-1 h-5 w-5 text-primary" />
                 <div>
                   <p className="font-medium">{language === "en" ? "Email" : "Correo Electrónico"}</p>
-                  <a href="mailto:info@gorilla-labs.com" className="text-muted-foreground hover:text-primary">
-                    info@gorilla-labs.com
+                  <a href="mailto:info@gorillabs.dev" className="text-muted-foreground hover:text-primary">
+                    info@gorillabs.dev
                   </a>
                 </div>
               </div>
@@ -101,7 +101,7 @@ export default function ContactPage() {
                 <div>
                   <p className="font-medium">{language === "en" ? "Phone" : "Teléfono"}</p>
                   <a href="tel:+1234567890" className="text-muted-foreground hover:text-primary">
-                    +1 (234) 567-890
+                    +52 (656) 573 1023
                   </a>
                 </div>
               </div>
@@ -111,11 +111,11 @@ export default function ContactPage() {
                 <div>
                   <p className="font-medium">{language === "en" ? "Address" : "Dirección"}</p>
                   <p className="text-muted-foreground">
-                    123 Tech Street
+                    Paseo Triunfo de la Republica
                     <br />
-                    Innovation District
+                    Cd Juarez, Chihuahua
                     <br />
-                    {language === "en" ? "City, State 12345" : "Ciudad, Estado 12345"}
+                    {language === "en" ? "El Paso, Texas" : "Cd Juarez, Chihuahua"}
                   </p>
                 </div>
               </div>
@@ -182,7 +182,7 @@ export default function ContactPage() {
                     <Input
                       id="phone"
                       name="phone"
-                      placeholder="+1 (234) 567-890"
+                      placeholder="+52 (656) 573 1023"
                       value={formData.phone}
                       onChange={handleChange}
                     />

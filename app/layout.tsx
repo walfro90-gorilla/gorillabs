@@ -77,16 +77,16 @@ export default function RootLayout({
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "@id": "https://gorilla-labs.com",
+    "@id": "https://gorillabs.dev",
     name: "Gorilla Labs",
     description: "Empresa de desarrollo de software, apps móviles, e-commerce, websites y soluciones de IA",
-    url: "https://gorilla-labs.com",
-    telephone: "+1-915-XXX-XXXX",
-    email: "info@gorilla-labs.com",
+    url: "https://gorillabs.dev",
+    telephone: "+52 (656) 573 1023",
+    email: "info@gorillabs.dev",
     address: [
       {
         "@type": "PostalAddress",
-        streetAddress: "123 Tech Street",
+        streetAddress: "113 Paden Street",
         addressLocality: "El Paso",
         addressRegion: "TX",
         postalCode: "79901",

@@ -67,7 +67,7 @@ const Header = () => {
     { href: "/services", label: translations.nav.services },
     { href: "/portfolio", label: translations.nav.portfolio },
     // { href: "/blog", label: translations.nav.blog },
-    { href: "/about", label: translations.nav.about },
+    // { href: "/about", label: translations.nav.about },
     { href: "/contact", label: translations.nav.contact },
   ]
 

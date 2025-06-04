@@ -90,8 +90,8 @@ export default function AIChat() {
           // Final fallback if everything fails
           const finalFallback =
             language === "en"
-              ? "I'm experiencing technical difficulties. Please contact our team directly at info@gorilla-labs.com or call +1 (234) 567-890 for immediate assistance."
-              : "Estoy experimentando dificultades técnicas. Por favor contacta directamente a nuestro equipo en info@gorilla-labs.com o llama al +1 (234) 567-890 para asistencia inmediata."
+              ? "I'm experiencing technical difficulties. Please contact our team directly at info@gorillabs.dev or call +52 (656) 573 1023 for immediate assistance."
+              : "Estoy experimentando dificultades técnicas. Por favor contacta directamente a nuestro equipo en info@gorillabs.dev o llama al +52 (656) 573 1023 para asistencia inmediata."
 
           setTimeout(() => {
             setMessages((prev) => [
