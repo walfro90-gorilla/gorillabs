@@ -109,6 +109,10 @@ const FeaturedServices = () => {
     })
   }
 
+  const handleViewDetails = (service: Service) => {
+    localStorage.setItem("selectedService", JSON.stringify(service))
+  }
+
   useEffect(() => {
     const startAutoPlay = () => {
       intervalRef.current = setInterval(() => {
@@ -195,16 +199,7 @@ const FeaturedServices = () => {
                   <ShoppingCart className="h-4 w-4" />
                   {translations.cart.addToCart}
                 </Button>
-                <Link
-                  href={`/services/${service.id}?title=${encodeURIComponent(
-                    service.title,
-                  )}&price=${service.price}&image=${encodeURIComponent(
-                    service.image,
-                  )}&category=${service.category}&rating=${service.rating}&description=${encodeURIComponent(
-                    service.fullDescription,
-                  )}&features=${encodeURIComponent(JSON.stringify(service.features))}`}
-                  className="flex-1"
-                >
+                <Link href={`/services/${service.id}`} className="flex-1" onClick={() => handleViewDetails(service)}>
                   <Button variant="default" className="w-full">
                     {translations.featuredServices.details}
                   </Button>
@@ -261,14 +256,9 @@ const FeaturedServices = () => {
                       {translations.cart.addToCart}
                     </Button>
                     <Link
-                      href={`/services/${service.id}?title=${encodeURIComponent(
-                        service.title,
-                      )}&price=${service.price}&image=${encodeURIComponent(
-                        service.image,
-                      )}&category=${service.category}&rating=${service.rating}&description=${encodeURIComponent(
-                        service.fullDescription,
-                      )}&features=${encodeURIComponent(JSON.stringify(service.features))}`}
+                      href={`/services/${service.id}`}
                       className="flex-1"
+                      onClick={() => handleViewDetails(service)}
                     >
                       <Button variant="default" className="w-full">
                         {translations.featuredServices.details}
