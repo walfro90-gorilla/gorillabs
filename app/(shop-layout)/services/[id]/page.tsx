@@ -11,19 +11,7 @@ import Image from "next/image"
 import { useCart } from "@/context/cart-context"
 import { useToast } from "@/hooks/use-toast"
 import { useLanguage } from "@/context/language-context"
-
-interface Service {
-  id: string
-  title: string
-  description: string
-  price: number
-  image: string
-  category: string
-  features: string[]
-  fullDescription: string
-  rating: number
-  featured: boolean
-}
+import { getServiceById, type Service } from "@/lib/services"
 
 export default function ServiceDetailPage() {
   const params = useParams()
@@ -32,10 +20,19 @@ export default function ServiceDetailPage() {
   const [loading, setLoading] = useState(true)
   const { addToCart } = useCart()
   const { toast } = useToast()
-  const { translations } = useLanguage()
+  const languageContext = useLanguage()
 
   useEffect(() => {
-    // Get service data from localStorage
+    // First try to get service from our data file
+    const serviceData = getServiceById(id)
+
+    if (serviceData) {
+      setService(serviceData)
+      setLoading(false)
+      return
+    }
+
+    // Fallback to localStorage if not found in our data
     const storedService = localStorage.getItem("selectedService")
 
     if (storedService) {
@@ -57,15 +54,15 @@ export default function ServiceDetailPage() {
 
     addToCart({
       id: service.id,
-      name: service.title,
+      name: service.title.en,
       price: service.price,
       quantity: 1,
       image: service.image,
     })
 
     toast({
-      title: translations.cart.addedToCart,
-      description: service.title,
+      title: languageContext.translations.cart.addedToCart,
+      description: service.title.en,
     })
   }
 
@@ -106,7 +103,7 @@ export default function ServiceDetailPage() {
           <div className="relative w-full h-[400px] rounded-lg overflow-hidden">
             <Image
               src={service.image || "/placeholder.svg?height=400&width=600"}
-              alt={service.title}
+              alt={service.title.en}
               fill
               className="object-cover"
             />
@@ -138,8 +135,10 @@ export default function ServiceDetailPage() {
             <Badge variant="outline" className="mb-2">
               {service.category.charAt(0).toUpperCase() + service.category.slice(1)}
             </Badge>
-            <h1 className="text-4xl font-bold mb-4">{service.title}</h1>
-            <p className="text-lg text-muted-foreground mb-6">{service.fullDescription}</p>
+            <h1 className="text-4xl font-bold mb-4">{service.title[languageContext.language] || service.title.en}</h1>
+            <p className="text-lg text-muted-foreground mb-6">
+              {service.fullDescription[languageContext.language] || service.fullDescription.en}
+            </p>
             <div className="flex items-center gap-4 mb-6">
               <span className="text-3xl font-bold text-primary">${service.price}</span>
               <span className="text-muted-foreground">Starting price</span>

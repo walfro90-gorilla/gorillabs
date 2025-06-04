@@ -9,8 +9,9 @@ import { useAuth } from "@/context/auth-context"
 import { Seo } from "@/components/seo"
 import { useRouter } from "next/navigation"
 import { LockIcon, ShieldCheck } from "lucide-react"
+import { type Service, getAllServices } from "@/lib/services"
 
-interface Service {
+interface ServiceOld {
   id: string
   title: string
   description: string
@@ -40,84 +41,15 @@ export default function ServicesPage() {
   useEffect(() => {
     if (!isClient) return
 
-    // Simulate fetching services from an API
+    // Get services from our data file
     const fetchServices = async () => {
       setLoading(true)
       try {
-        // In a real app, this would be an API call
-        const mockServices: Service[] = [
-          {
-            id: "1",
-            title: languageContext.language === "en" ? "Website Development" : "Desarrollo de Sitios Web",
-            description:
-              languageContext.language === "en"
-                ? "Custom website development tailored to your business needs."
-                : "Desarrollo de sitios web personalizados adaptados a las necesidades de su negocio.",
-            price: 1200,
-            image: "https://res.cloudinary.com/dgmmzh8nb/image/upload/v1748983315/syf7khoovwrnewmaigin.png",
-            category: "web",
-          },
-          {
-            id: "2",
-            title: languageContext.language === "en" ? "E-commerce Solutions" : "Soluciones de Comercio Electrónico",
-            description:
-              languageContext.language === "en"
-                ? "Full-featured online stores with secure payment processing."
-                : "Tiendas en línea completas con procesamiento de pagos seguro.",
-            price: 1600,
-            image: "https://res.cloudinary.com/dgmmzh8nb/image/upload/v1748983470/c29i1t0ne1rnmjwjpjtf.png",
-            category: "ecommerce",
-          },
-          {
-            id: "3",
-            title: languageContext.language === "en" ? "Mobile App Development" : "Desarrollo de Aplicaciones Móviles",
-            description:
-              languageContext.language === "en"
-                ? "Native and cross-platform mobile applications for iOS and Android."
-                : "Aplicaciones móviles nativas y multiplataforma para iOS y Android.",
-            price: 45,
-            image: "https://res.cloudinary.com/dgmmzh8nb/image/upload/v1748983652/hxuxxifnwc6jsxrxbmqj.png",
-            category: "app",
-          },
-          {
-            id: "4",
-            title: languageContext.language === "en" ? "SEO Optimization" : "Optimización SEO",
-            description:
-              languageContext.language === "en"
-                ? "Improve your website visibility and ranking on search engines."
-                : "Mejore la visibilidad y el ranking de su sitio web en los motores de búsqueda.",
-            price: 800,
-            image: "/placeholder.svg?height=200&width=300",
-            category: "marketing",
-          },
-          {
-            id: "5",
-            title: languageContext.language === "en" ? "UI/UX Design" : "Diseño UI/UX",
-            description:
-              languageContext.language === "en"
-                ? "User-centered design that enhances user experience and satisfaction."
-                : "Diseño centrado en el usuario que mejora la experiencia y satisfacción del usuario.",
-            price: 1200,
-            image: "/placeholder.svg?height=200&width=300",
-            category: "design",
-          },
-          {
-            id: "6",
-            title: languageContext.language === "en" ? "Content Management" : "Gestión de Contenido",
-            description:
-              languageContext.language === "en"
-                ? "Easy-to-use content management systems for your website."
-                : "Sistemas de gestión de contenido fáciles de usar para su sitio web.",
-            price: 900,
-            image: "/placeholder.svg?height=200&width=300",
-            category: "web",
-          },
-        ]
-
-        setServices(mockServices)
+        const allServices = getAllServices()
+        setServices(allServices)
 
         // Extract unique categories
-        const uniqueCategories = Array.from(new Set(mockServices.map((service) => service.category)))
+        const uniqueCategories = Array.from(new Set(allServices.map((service) => service.category)))
         setCategories(uniqueCategories)
 
         setLoading(false)
@@ -128,7 +60,7 @@ export default function ServicesPage() {
     }
 
     fetchServices()
-  }, [isClient, languageContext.language])
+  }, [isClient])
 
   const filteredServices =
     selectedCategory === "all" ? services : services.filter((service) => service.category === selectedCategory)
@@ -144,16 +76,17 @@ export default function ServicesPage() {
 
     cartContext.addToCart({
       id: service.id,
-      name: service.title,
+      name: service.title[languageContext.language] || service.title.en,
       price: service.price,
       quantity: 1,
       image: service.image,
     })
   }
 
-  // Añadir función para ver detalles
-  const viewServiceDetails = (serviceId: string) => {
-    router.push(`/services/${serviceId}`)
+  const viewServiceDetails = (service: Service) => {
+    // Store the selected service in localStorage
+    localStorage.setItem("selectedService", JSON.stringify(service))
+    router.push(`/services/${service.id}`)
   }
 
   // Helper function for translations with fallback
@@ -284,26 +217,36 @@ export default function ServicesPage() {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredServices.map((service) => (
-            <Card key={service.id} className="flex flex-col h-full">
+            <Card
+              key={service.id}
+              className="flex flex-col h-full cursor-pointer hover:border-primary transition-all duration-300"
+              onClick={() => viewServiceDetails(service)}
+            >
               <img
                 src={service.image || "/placeholder.svg"}
-                alt={service.title}
+                alt={service.title[languageContext.language] || service.title.en}
                 className="w-full h-[200px] object-cover rounded-t-lg"
               />
               <CardHeader>
-                <CardTitle>{service.title}</CardTitle>
+                <CardTitle>{service.title[languageContext.language] || service.title.en}</CardTitle>
                 <CardDescription>
                   {t("services.price", "Price")}: {service.id === "3" ? `$${service.price}/hour` : `$${service.price}`}
                 </CardDescription>
               </CardHeader>
               <CardContent className="flex-grow">
-                <p>{service.description}</p>
+                <p>{service.description[languageContext.language] || service.description.en}</p>
               </CardContent>
               <CardFooter className="flex flex-col gap-2">
-                <Button className="w-full" onClick={() => handleAddToCart(service)}>
+                <Button
+                  className="w-full"
+                  onClick={(e) => {
+                    e.stopPropagation() // Prevent card click
+                    handleAddToCart(service)
+                  }}
+                >
                   {user ? t("services.addToCart", "Add to Cart") : t("services.loginToAdd", "Login to Add")}
                 </Button>
-                <Button variant="outline" className="w-full" onClick={() => viewServiceDetails(service.id)}>
+                <Button variant="outline" className="w-full">
                   {t("services.viewDetails", "View Details")}
                 </Button>
               </CardFooter>

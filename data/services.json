@@ -1,0 +1,170 @@
+[
+  {
+    "id": "1",
+    "title": {
+      "en": "Website Development",
+      "es": "Desarrollo de Sitios Web"
+    },
+    "description": {
+      "en": "Custom website development tailored to your business needs.",
+      "es": "Desarrollo de sitios web personalizados adaptados a las necesidades de su negocio."
+    },
+    "fullDescription": {
+      "en": "Our website development service provides end-to-end solutions for businesses of all sizes. We create responsive, user-friendly websites that are optimized for search engines and designed to convert visitors into customers. Our team of experienced developers uses the latest technologies and frameworks to ensure your website is fast, secure, and scalable.",
+      "es": "Nuestro servicio de desarrollo web proporciona soluciones integrales para empresas de todos los tamaños. Creamos sitios web responsivos y fáciles de usar que están optimizados para motores de búsqueda y diseñados para convertir visitantes en clientes. Nuestro equipo de desarrolladores experimentados utiliza las últimas tecnologías y frameworks para garantizar que su sitio web sea rápido, seguro y escalable."
+    },
+    "price": 1200,
+    "image": "https://res.cloudinary.com/dgmmzh8nb/image/upload/v1748983315/syf7khoovwrnewmaigin.png",
+    "category": "web",
+    "features": [
+      "Responsive design for all devices",
+      "SEO optimization",
+      "Content management system",
+      "Fast loading speeds",
+      "Security features",
+      "Analytics integration"
+    ],
+    "rating": 4.8,
+    "featured": true
+  },
+  {
+    "id": "2",
+    "title": {
+      "en": "E-commerce Solutions",
+      "es": "Soluciones de Comercio Electrónico"
+    },
+    "description": {
+      "en": "Full-featured online stores with secure payment processing.",
+      "es": "Tiendas en línea completas con procesamiento de pagos seguro."
+    },
+    "fullDescription": {
+      "en": "Transform your business with our comprehensive e-commerce solutions. We build custom online stores that are easy to manage and provide a seamless shopping experience for your customers. Our e-commerce platforms include secure payment gateways, inventory management systems, and customer portals to help you grow your online business.",
+      "es": "Transforme su negocio con nuestras soluciones integrales de comercio electrónico. Construimos tiendas en línea personalizadas que son fáciles de administrar y brindan una experiencia de compra perfecta para sus clientes. Nuestras plataformas de comercio electrónico incluyen pasarelas de pago seguras, sistemas de gestión de inventario y portales para clientes para ayudarlo a hacer crecer su negocio en línea."
+    },
+    "price": 1600,
+    "image": "https://res.cloudinary.com/dgmmzh8nb/image/upload/v1748983470/c29i1t0ne1rnmjwjpjtf.png",
+    "category": "ecommerce",
+    "features": [
+      "Secure payment processing",
+      "Inventory management",
+      "Customer accounts",
+      "Product reviews and ratings",
+      "Mobile-friendly shopping experience",
+      "Order tracking and management"
+    ],
+    "rating": 4.9,
+    "featured": true
+  },
+  {
+    "id": "3",
+    "title": {
+      "en": "Mobile App Development",
+      "es": "Desarrollo de Aplicaciones Móviles"
+    },
+    "description": {
+      "en": "Native and cross-platform mobile applications for iOS and Android.",
+      "es": "Aplicaciones móviles nativas y multiplataforma para iOS y Android."
+    },
+    "fullDescription": {
+      "en": "Our mobile app development service delivers high-quality native and cross-platform applications for iOS and Android. We focus on creating intuitive user interfaces, smooth performance, and engaging features that keep users coming back. Whether you need a simple app or a complex solution with backend integration, our team has the expertise to bring your vision to life.",
+      "es": "Nuestro servicio de desarrollo de aplicaciones móviles ofrece aplicaciones nativas y multiplataforma de alta calidad para iOS y Android. Nos enfocamos en crear interfaces de usuario intuitivas, rendimiento fluido y características atractivas que hacen que los usuarios vuelvan. Ya sea que necesite una aplicación simple o una solución compleja con integración de backend, nuestro equipo tiene la experiencia para dar vida a su visión."
+    },
+    "price": 45,
+    "image": "https://res.cloudinary.com/dgmmzh8nb/image/upload/v1748983652/hxuxxifnwc6jsxrxbmqj.png",
+    "category": "app",
+    "features": [
+      "Native iOS and Android development",
+      "Cross-platform solutions",
+      "Push notifications",
+      "Offline functionality",
+      "API integration",
+      "App store submission assistance"
+    ],
+    "rating": 4.7,
+    "featured": false
+  },
+  {
+    "id": "4",
+    "title": {
+      "en": "SEO Optimization",
+      "es": "Optimización SEO"
+    },
+    "description": {
+      "en": "Improve your website visibility and ranking on search engines.",
+      "es": "Mejore la visibilidad y el ranking de su sitio web en los motores de búsqueda."
+    },
+    "fullDescription": {
+      "en": "Our SEO optimization service helps your website rank higher in search engine results, driving more organic traffic to your business. We conduct thorough keyword research, optimize your website structure and content, build quality backlinks, and provide regular performance reports. Our comprehensive approach ensures long-term results and a strong online presence.",
+      "es": "Nuestro servicio de optimización SEO ayuda a que su sitio web obtenga una clasificación más alta en los resultados de los motores de búsqueda, dirigiendo más tráfico orgánico a su negocio. Realizamos una investigación exhaustiva de palabras clave, optimizamos la estructura y el contenido de su sitio web, creamos enlaces de calidad y proporcionamos informes de rendimiento regulares. Nuestro enfoque integral garantiza resultados a largo plazo y una fuerte presencia en línea."
+    },
+    "price": 800,
+    "image": "https://res.cloudinary.com/dgmmzh8nb/image/upload/v1749055650/vrhklhswdafbofyo7qil.png",
+    "category": "marketing",
+    "features": [
+      "Keyword research and optimization",
+      "On-page SEO improvements",
+      "Content strategy",
+      "Link building",
+      "Technical SEO audits",
+      "Monthly performance reports"
+    ],
+    "rating": 4.6,
+    "featured": false
+  },
+  {
+    "id": "5",
+    "title": {
+      "en": "UI/UX Design",
+      "es": "Diseño UI/UX"
+    },
+    "description": {
+      "en": "User-centered design that enhances user experience and satisfaction.",
+      "es": "Diseño centrado en el usuario que mejora la experiencia y satisfacción del usuario."
+    },
+    "fullDescription": {
+      "en": "Our UI/UX design service focuses on creating intuitive, engaging, and accessible digital experiences. We follow a user-centered design approach, conducting research to understand your users' needs and behaviors. Our design process includes wireframing, prototyping, and usability testing to ensure your product not only looks great but also provides an exceptional user experience.",
+      "es": "Nuestro servicio de diseño UI/UX se centra en crear experiencias digitales intuitivas, atractivas y accesibles. Seguimos un enfoque de diseño centrado en el usuario, realizando investigaciones para comprender las necesidades y comportamientos de sus usuarios. Nuestro proceso de diseño incluye wireframing, creación de prototipos y pruebas de usabilidad para garantizar que su producto no solo se vea bien, sino que también proporcione una experiencia de usuario excepcional."
+    },
+    "price": 1200,
+    "image": "https://res.cloudinary.com/dgmmzh8nb/image/upload/v1749055337/edmikmu9sayq4npfrovh.png",
+    "category": "design",
+    "features": [
+      "User research and personas",
+      "Information architecture",
+      "Wireframing and prototyping",
+      "Visual design",
+      "Usability testing",
+      "Design system creation"
+    ],
+    "rating": 4.9,
+    "featured": true
+  },
+  {
+    "id": "6",
+    "title": {
+      "en": "Content Management",
+      "es": "Gestión de Contenido"
+    },
+    "description": {
+      "en": "Easy-to-use content management systems for your website.",
+      "es": "Sistemas de gestión de contenido fáciles de usar para su sitio web."
+    },
+    "fullDescription": {
+      "en": "Our content management service provides you with powerful tools to easily update and maintain your website content. We implement user-friendly CMS solutions that allow you to manage text, images, videos, and other media without technical knowledge. Our systems include workflow management, content scheduling, and multi-user access controls to streamline your content operations.",
+      "es": "Nuestro servicio de gestión de contenido le proporciona herramientas poderosas para actualizar y mantener fácilmente el contenido de su sitio web. Implementamos soluciones CMS fáciles de usar que le permiten administrar texto, imágenes, videos y otros medios sin conocimientos técnicos. Nuestros sistemas incluyen gestión de flujo de trabajo, programación de contenido y controles de acceso para múltiples usuarios para agilizar sus operaciones de contenido."
+    },
+    "price": 900,
+    "image": "https://res.cloudinary.com/dgmmzh8nb/image/upload/v1749055788/qqvvxvdvvvnfvvvvvvvv.png",
+    "category": "web",
+    "features": [
+      "User-friendly admin interface",
+      "Content versioning",
+      "Media library management",
+      "User roles and permissions",
+      "Content scheduling",
+      "Multi-language support"
+    ],
+    "rating": 4.5,
+    "featured": false
+  }
+]
