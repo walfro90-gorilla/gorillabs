@@ -63,7 +63,7 @@ const ServiceCategories = () => {
       <Tabs defaultValue="all" value={activeTab} onValueChange={setActiveTab}>
         <div className="relative">
           <ScrollArea className="w-full whitespace-nowrap pb-4">
-            <TabsList className="flex w-full justify-center">
+            <TabsList className="inline-flex w-max">
               <TabsTrigger value="all">{translations.services.all}</TabsTrigger>
               <TabsTrigger value="mobile">{translations.services.mobile}</TabsTrigger>
               <TabsTrigger value="ecommerce">{translations.services.ecomm}</TabsTrigger>
@@ -75,8 +75,7 @@ const ServiceCategories = () => {
         </div>
 
         <TabsContent value={activeTab} className="mt-6">
-          {/* Desktop View */}
-          <div className="hidden md:grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {filteredCategories.map((category) => (
               <Link key={category.id} href={category.link}>
                 <Card className="service-card h-full transition-all duration-300 hover:border-primary">
@@ -88,22 +87,6 @@ const ServiceCategories = () => {
                 </Card>
               </Link>
             ))}
-          </div>
-
-          {/* Mobile View - 2 per row grid */}
-          <div className="md:hidden">
-            <div className="grid grid-cols-2 gap-4">
-              {filteredCategories.map((category) => (
-                <Link key={category.id} href={category.link}>
-                  <Card className="service-card transition-all duration-300 hover:border-primary">
-                    <CardContent className="flex flex-col items-center p-4 text-center">
-                      <div className="mb-3 rounded-full bg-primary/10 p-2">{category.icon}</div>
-                      <h3 className="text-sm font-bold">{category.title}</h3>
-                    </CardContent>
-                  </Card>
-                </Link>
-              ))}
-            </div>
           </div>
         </TabsContent>
       </Tabs>

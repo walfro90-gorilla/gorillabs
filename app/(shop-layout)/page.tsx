@@ -58,7 +58,7 @@ export default function HomePage() {
       <div className="w-full bg-primary py-8 text-primary-foreground">
         <CountdownTimer
           targetDate={new Date(Date.now() + 30 * 24 * 60 * 60 * 1000)}
-          title="Nueva Implementación de Servicio"
+          title="New Service Launch Countdown"
         />
       </div>
 

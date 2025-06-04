@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
@@ -32,8 +32,8 @@ const FeaturedServices = () => {
       id: "web-basic",
       title: translations.featuredServices.webBasic,
       description: translations.featuredServices.webBasicDesc,
-      price: 1200,
-      image: "https://res.cloudinary.com/dgmmzh8nb/image/upload/v1748983315/syf7khoovwrnewmaigin.png",
+      price: 999,
+      image: "/placeholder.svg?height=400&width=600",
       category: "web",
       featured: true,
       rating: 4.8,
@@ -42,8 +42,8 @@ const FeaturedServices = () => {
       id: "ecomm-standard",
       title: translations.featuredServices.ecommStandard,
       description: translations.featuredServices.ecommStandardDesc,
-      price: 1600,
-      image: "https://res.cloudinary.com/dgmmzh8nb/image/upload/v1748983470/c29i1t0ne1rnmjwjpjtf.png",
+      price: 1999,
+      image: "/placeholder.svg?height=400&width=600",
       category: "ecommerce",
       featured: true,
       rating: 4.9,
@@ -52,16 +52,13 @@ const FeaturedServices = () => {
       id: "mobile-app",
       title: translations.featuredServices.mobileApp,
       description: translations.featuredServices.mobileAppDesc,
-      price: 45,
-      image: "https://res.cloudinary.com/dgmmzh8nb/image/upload/v1748983652/hxuxxifnwc6jsxrxbmqj.png",
+      price: 2999,
+      image: "/placeholder.svg?height=400&width=600",
       category: "mobile",
       featured: true,
       rating: 4.7,
     },
   ])
-
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const intervalRef = useRef<NodeJS.Timeout | null>(null)
 
   const handleAddToCart = (service: Service) => {
     addToCart({
@@ -78,37 +75,6 @@ const FeaturedServices = () => {
     })
   }
 
-  useEffect(() => {
-    const startAutoPlay = () => {
-      intervalRef.current = setInterval(() => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % services.length)
-      }, 2600)
-    }
-
-    const stopAutoPlay = () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current)
-      }
-    }
-
-    // Only start autoplay on mobile
-    const checkMobile = () => {
-      if (window.innerWidth < 768) {
-        startAutoPlay()
-      } else {
-        stopAutoPlay()
-      }
-    }
-
-    checkMobile()
-    window.addEventListener("resize", checkMobile)
-
-    return () => {
-      stopAutoPlay()
-      window.removeEventListener("resize", checkMobile)
-    }
-  }, [services.length])
-
   return (
     <div className="container">
       <div className="mb-10 flex flex-wrap items-center justify-between gap-4">
@@ -124,126 +90,52 @@ const FeaturedServices = () => {
         </Link>
       </div>
 
-      <div className="relative">
-        {/* Desktop Grid */}
-        <div className="hidden md:grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {services.map((service) => (
-            <Card key={service.id} className="service-card overflow-hidden transition-all duration-300">
-              <div className="relative h-48 w-full overflow-hidden">
-                <Image
-                  src={service.image || "/placeholder.svg"}
-                  alt={service.title}
-                  fill
-                  className="object-cover transition-transform duration-300 hover:scale-105"
-                />
-                <Badge className="absolute right-2 top-2 bg-primary text-primary-foreground">
-                  {translations.featuredServices.featured}
-                </Badge>
-              </div>
-
-              <CardContent className="p-6">
-                <div className="mb-2 flex items-center gap-1">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className={`h-4 w-4 ${
-                        i < Math.floor(service.rating) ? "fill-primary text-primary" : "fill-muted text-muted"
-                      }`}
-                    />
-                  ))}
-                  <span className="ml-1 text-sm text-muted-foreground">{service.rating}</span>
-                </div>
-
-                <h3 className="mb-2 text-xl font-bold">{service.title}</h3>
-                <p className="mb-4 text-muted-foreground">{service.description}</p>
-                <p className="text-2xl font-bold text-primary">${service.price}</p>
-              </CardContent>
-
-              <CardFooter className="flex gap-2 p-6 pt-0">
-                <Button variant="outline" className="flex-1 gap-2" onClick={() => handleAddToCart(service)}>
-                  <ShoppingCart className="h-4 w-4" />
-                  {translations.cart.addToCart}
-                </Button>
-                <Link href={`/services/${service.id}`} className="flex-1">
-                  <Button variant="default" className="w-full">
-                    {translations.featuredServices.details}
-                  </Button>
-                </Link>
-              </CardFooter>
-            </Card>
-          ))}
-        </div>
-
-        {/* Mobile Carousel */}
-        <div className="md:hidden overflow-hidden">
-          <div
-            className="flex transition-transform duration-700 ease-in-out"
-            style={{
-              transform: `translateX(-${currentIndex * 100}%)`,
-            }}
-          >
-            {services.map((service, index) => (
-              <div key={service.id} className="flex-shrink-0 w-full px-2">
-                <Card className="service-card overflow-hidden transition-all duration-300">
-                  <div className="relative h-48 w-full overflow-hidden">
-                    <Image
-                      src={service.image || "/placeholder.svg"}
-                      alt={service.title}
-                      fill
-                      className="object-cover transition-transform duration-300 hover:scale-105"
-                    />
-                    <Badge className="absolute right-2 top-2 bg-primary text-primary-foreground">
-                      {translations.featuredServices.featured}
-                    </Badge>
-                  </div>
-
-                  <CardContent className="p-6">
-                    <div className="mb-2 flex items-center gap-1">
-                      {[...Array(5)].map((_, i) => (
-                        <Star
-                          key={i}
-                          className={`h-4 w-4 ${
-                            i < Math.floor(service.rating) ? "fill-primary text-primary" : "fill-muted text-muted"
-                          }`}
-                        />
-                      ))}
-                      <span className="ml-1 text-sm text-muted-foreground">{service.rating}</span>
-                    </div>
-
-                    <h3 className="mb-2 text-xl font-bold">{service.title}</h3>
-                    <p className="mb-4 text-muted-foreground">{service.description}</p>
-                    <p className="text-2xl font-bold text-primary">${service.price}</p>
-                  </CardContent>
-
-                  <CardFooter className="flex gap-2 p-6 pt-0">
-                    <Button variant="outline" className="flex-1 gap-2" onClick={() => handleAddToCart(service)}>
-                      <ShoppingCart className="h-4 w-4" />
-                      {translations.cart.addToCart}
-                    </Button>
-                    <Link href={`/services/${service.id}`} className="flex-1">
-                      <Button variant="default" className="w-full">
-                        {translations.featuredServices.details}
-                      </Button>
-                    </Link>
-                  </CardFooter>
-                </Card>
-              </div>
-            ))}
-          </div>
-
-          {/* Carousel Indicators */}
-          <div className="flex justify-center mt-4 space-x-2">
-            {services.map((_, index) => (
-              <button
-                key={index}
-                className={`w-2 h-2 rounded-full transition-colors ${
-                  index === currentIndex ? "bg-primary" : "bg-gray-300"
-                }`}
-                onClick={() => setCurrentIndex(index)}
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {services.map((service) => (
+          <Card key={service.id} className="service-card overflow-hidden transition-all duration-300">
+            <div className="relative h-48 w-full overflow-hidden">
+              <Image
+                src={service.image || "/placeholder.svg"}
+                alt={service.title}
+                fill
+                className="object-cover transition-transform duration-300 hover:scale-105"
               />
-            ))}
-          </div>
-        </div>
+              <Badge className="absolute right-2 top-2 bg-primary text-primary-foreground">
+                {translations.featuredServices.featured}
+              </Badge>
+            </div>
+
+            <CardContent className="p-6">
+              <div className="mb-2 flex items-center gap-1">
+                {[...Array(5)].map((_, i) => (
+                  <Star
+                    key={i}
+                    className={`h-4 w-4 ${
+                      i < Math.floor(service.rating) ? "fill-primary text-primary" : "fill-muted text-muted"
+                    }`}
+                  />
+                ))}
+                <span className="ml-1 text-sm text-muted-foreground">{service.rating}</span>
+              </div>
+
+              <h3 className="mb-2 text-xl font-bold">{service.title}</h3>
+              <p className="mb-4 text-muted-foreground">{service.description}</p>
+              <p className="text-2xl font-bold text-primary">${service.price}</p>
+            </CardContent>
+
+            <CardFooter className="flex gap-2 p-6 pt-0">
+              <Button variant="outline" className="flex-1 gap-2" onClick={() => handleAddToCart(service)}>
+                <ShoppingCart className="h-4 w-4" />
+                {translations.cart.addToCart}
+              </Button>
+              <Link href={`/services/${service.id}`} className="flex-1">
+                <Button variant="default" className="w-full">
+                  {translations.featuredServices.details}
+                </Button>
+              </Link>
+            </CardFooter>
+          </Card>
+        ))}
       </div>
     </div>
   )
