@@ -84,46 +84,68 @@ export async function POST(request: NextRequest) {
   try {
     const { message, language } = await request.json()
 
-    // Try DeepSeek API first
-    const apiKey = process.env.DEEPSEEK_API_KEY || "sk-dd49bbc217924b7f85a3bd607a83dc2b"
+    // Try Google Gemini API first
+    const apiKey = process.env.GOOGLE_API_KEY || "AIzaSyBbSSgrCMht1xHSGPSO1QSauy6ROYLn-_U"
 
     if (apiKey) {
       try {
-        const response = await fetch("https://api.deepseek.com/v1/chat/completions", {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${apiKey}`,
-            "Content-Type": "application/json",
+        const response = await fetch(
+          `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              contents: [
+                {
+                  parts: [
+                    {
+                      text: `${getBusinessContext()}\n\nRespond in ${language === "en" ? "English" : "Spanish"}. Keep responses concise and helpful, around 100-150 words.\n\nUser message: ${message}`,
+                    },
+                  ],
+                },
+              ],
+              generationConfig: {
+                temperature: 0.7,
+                topK: 40,
+                topP: 0.95,
+                maxOutputTokens: 200,
+              },
+              safetySettings: [
+                {
+                  category: "HARM_CATEGORY_HARASSMENT",
+                  threshold: "BLOCK_MEDIUM_AND_ABOVE",
+                },
+                {
+                  category: "HARM_CATEGORY_HATE_SPEECH",
+                  threshold: "BLOCK_MEDIUM_AND_ABOVE",
+                },
+                {
+                  category: "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+                  threshold: "BLOCK_MEDIUM_AND_ABOVE",
+                },
+                {
+                  category: "HARM_CATEGORY_DANGEROUS_CONTENT",
+                  threshold: "BLOCK_MEDIUM_AND_ABOVE",
+                },
+              ],
+            }),
           },
-          body: JSON.stringify({
-            model: "deepseek-chat",
-            messages: [
-              {
-                role: "system",
-                content: `${getBusinessContext()}\n\nRespond in ${language === "en" ? "English" : "Spanish"}. Keep responses concise and helpful, around 100-150 words.`,
-              },
-              {
-                role: "user",
-                content: message,
-              },
-            ],
-            max_tokens: 200,
-            temperature: 0.7,
-            stream: false,
-          }),
-        })
+        )
 
         if (response.ok) {
           const data = await response.json()
-          const aiResponse = data.choices[0]?.message?.content || "I apologize, but I cannot respond right now."
-          return NextResponse.json({ response: aiResponse, source: "deepseek" })
+          const aiResponse =
+            data.candidates?.[0]?.content?.parts?.[0]?.text || "I apologize, but I cannot respond right now."
+          return NextResponse.json({ response: aiResponse, source: "gemini" })
         } else {
           const errorData = await response.text()
-          console.error("DeepSeek API Error:", response.status, errorData)
-          throw new Error(`DeepSeek API returned ${response.status}: ${errorData}`)
+          console.error("Gemini API Error:", response.status, errorData)
+          throw new Error(`Gemini API returned ${response.status}: ${errorData}`)
         }
       } catch (apiError) {
-        console.error("DeepSeek API call failed:", apiError)
+        console.error("Gemini API call failed:", apiError)
         // Fall back to predefined responses
       }
     }

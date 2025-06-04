@@ -28,7 +28,7 @@ export default function ChatbotConfigPage() {
   const { language } = useLanguage()
   const { toast } = useToast()
   const [config, setConfig] = useState<ChatbotConfig>({
-    apiKey: "sk-dd49bbc217924b7f85a3bd607a83dc2b",
+    apiKey: "AIzaSyBbSSgrCMht1xHSGPSO1QSauy6ROYLn-_U",
     businessName: "Gorilla Labs",
     location: "El Paso, Texas & Ciudad Juárez, Mexico",
     services: "Web Development, E-commerce Solutions, Mobile App Development, Digital Marketing",
@@ -36,10 +36,10 @@ export default function ChatbotConfigPage() {
     contactInfo: "info@gorilla-labs.com, +1 (234) 567-890",
     customInstructions:
       "Always respond in a helpful, professional manner. Focus on understanding client needs and directing them to appropriate services.",
-    model: "deepseek-chat",
+    model: "gemini-1.5-flash-latest",
     temperature: 0.7,
     maxTokens: 200,
-    provider: "deepseek",
+    provider: "google",
   })
   const [isLoading, setIsLoading] = useState(false)
 
@@ -120,8 +120,8 @@ export default function ChatbotConfigPage() {
           </h1>
           <p className="text-muted-foreground">
             {language === "en"
-              ? "Configure your AI chatbot settings and business information (Now using DeepSeek API)"
-              : "Configura los ajustes del chatbot IA e información del negocio (Ahora usando API de DeepSeek)"}
+              ? "Configure your AI chatbot settings and business information (Now using Google Gemini API)"
+              : "Configura los ajustes del chatbot IA e información del negocio (Ahora usando API de Google Gemini)"}
           </p>
         </div>
         <div className="flex gap-2">
@@ -146,8 +146,8 @@ export default function ChatbotConfigPage() {
             </CardTitle>
             <CardDescription>
               {language === "en"
-                ? "DeepSeek API settings and model configuration"
-                : "Configuración de API de DeepSeek y modelo"}
+                ? "Google Gemini API settings and model configuration"
+                : "Configuración de API de Google Gemini y modelo"}
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -159,18 +159,19 @@ export default function ChatbotConfigPage() {
                 onChange={(e) => setConfig({ ...config, provider: e.target.value })}
                 className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
               >
-                <option value="deepseek">DeepSeek</option>
+                <option value="google">Google Gemini</option>
                 <option value="openai">OpenAI (Backup)</option>
+                <option value="deepseek">DeepSeek (Backup)</option>
               </select>
             </div>
             <div>
-              <Label htmlFor="apiKey">{language === "en" ? "DeepSeek API Key" : "Clave API de DeepSeek"}</Label>
+              <Label htmlFor="apiKey">{language === "en" ? "Google API Key" : "Clave API de Google"}</Label>
               <Input
                 id="apiKey"
                 type="password"
                 value={config.apiKey}
                 onChange={(e) => setConfig({ ...config, apiKey: e.target.value })}
-                placeholder="sk-..."
+                placeholder="AIza..."
               />
             </div>
             <div>
@@ -181,8 +182,9 @@ export default function ChatbotConfigPage() {
                 onChange={(e) => setConfig({ ...config, model: e.target.value })}
                 className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
               >
-                <option value="deepseek-chat">DeepSeek Chat</option>
-                <option value="deepseek-coder">DeepSeek Coder</option>
+                <option value="gemini-1.5-flash-latest">Gemini 1.5 Flash (Latest)</option>
+                <option value="gemini-1.5-pro-latest">Gemini 1.5 Pro (Latest)</option>
+                <option value="gemini-pro">Gemini Pro</option>
               </select>
             </div>
             <div>
