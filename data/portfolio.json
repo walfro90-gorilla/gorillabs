@@ -1,0 +1,172 @@
+{
+  "projects": [
+    {
+      "id": "ketzal-travel-app",
+      "title": "Ketzal - Red Social de Viajeros",
+      "description": "Una plataforma social innovadora que conecta viajeros de todo el mundo, permitiendo compartir experiencias, planificar rutas y descubrir destinos únicos.",
+      "fullDescription": "Ketzal es una aplicación web completa que revoluciona la forma en que los viajeros se conectan y comparten sus experiencias. La plataforma incluye funcionalidades de red social, planificación de viajes, recomendaciones personalizadas y un sistema de comunidad robusto. Los usuarios pueden crear perfiles detallados, compartir fotos y videos de sus viajes, seguir a otros viajeros, y descubrir nuevos destinos a través de recomendaciones basadas en IA.",
+      "category": "web",
+      "image": "https://res.cloudinary.com/dgmmzh8nb/image/upload/v1749055650/ketzal-preview.png",
+      "gallery": [
+        "https://res.cloudinary.com/dgmmzh8nb/image/upload/v1749055650/ketzal-preview.png",
+        "https://res.cloudinary.com/dgmmzh8nb/image/upload/v1749055337/ketzal-mobile.png",
+        "https://res.cloudinary.com/dgmmzh8nb/image/upload/v1749055337/ketzal-dashboard.png"
+      ],
+      "client": "Startup Ketzal",
+      "date": "2024-01",
+      "technologies": ["Next.js", "React", "TypeScript", "Tailwind CSS", "Supabase", "Vercel", "Framer Motion"],
+      "link": "https://ketzal-app.vercel.app/",
+      "featured": true,
+      "challenges": [
+        "Implementación de sistema de geolocalización en tiempo real",
+        "Optimización de rendimiento para carga de imágenes de alta resolución",
+        "Desarrollo de algoritmo de recomendaciones personalizadas"
+      ],
+      "results": [
+        "Aumento del 300% en engagement de usuarios",
+        "Tiempo de carga reducido en 60%",
+        "95% de satisfacción del usuario"
+      ]
+    },
+    {
+      "id": "dulceria-socami",
+      "title": "Dulcería Socami - E-commerce",
+      "description": "Tienda online especializada en dulces artesanales y productos gourmet, con sistema de pedidos personalizado y gestión de inventario en tiempo real.",
+      "fullDescription": "Dulcería Socami es una plataforma de e-commerce completa desarrollada para una empresa familiar especializada en dulces artesanales. El proyecto incluye un catálogo de productos dinámico, sistema de carrito de compras, procesamiento de pagos seguro, gestión de pedidos, panel administrativo completo y sistema de notificaciones automáticas. La plataforma está optimizada para dispositivos móviles y cuenta con funcionalidades avanzadas como recomendaciones de productos y programa de fidelidad.",
+      "category": "ecommerce",
+      "image": "https://res.cloudinary.com/dgmmzh8nb/image/upload/v1749055337/dulceria-preview.png",
+      "gallery": [
+        "https://res.cloudinary.com/dgmmzh8nb/image/upload/v1749055337/dulceria-preview.png",
+        "https://res.cloudinary.com/dgmmzh8nb/image/upload/v1749055337/dulceria-products.png",
+        "https://res.cloudinary.com/dgmmzh8nb/image/upload/v1749055337/dulceria-checkout.png"
+      ],
+      "client": "Dulcería Socami",
+      "date": "2023-11",
+      "technologies": ["Next.js", "React", "Stripe", "Tailwind CSS", "MongoDB", "Node.js", "Cloudinary"],
+      "link": "https://dulceriasocami.com/es",
+      "featured": true,
+      "challenges": [
+        "Integración con múltiples métodos de pago locales",
+        "Sistema de inventario en tiempo real",
+        "Optimización SEO para productos específicos"
+      ],
+      "results": [
+        "Incremento del 250% en ventas online",
+        "Reducción del 40% en tiempo de procesamiento de pedidos",
+        "Expansión a 3 nuevas ciudades"
+      ]
+    },
+    {
+      "id": "inmobiliaria-premium",
+      "title": "Premium Real Estate - Portal Inmobiliario",
+      "description": "Plataforma inmobiliaria completa con búsqueda avanzada, tours virtuales 360°, sistema CRM integrado y herramientas de valoración automática.",
+      "fullDescription": "Premium Real Estate es una solución integral para el sector inmobiliario que combina tecnología de vanguardia con una experiencia de usuario excepcional. La plataforma incluye búsqueda avanzada con filtros geográficos, tours virtuales en 360°, sistema de valoración automática basado en IA, CRM integrado para agentes, portal de clientes, sistema de citas online y herramientas de marketing digital. El proyecto también incluye una aplicación móvil nativa para iOS y Android.",
+      "category": "web",
+      "image": "https://res.cloudinary.com/dgmmzh8nb/image/upload/v1749055650/realestate-preview.png",
+      "gallery": [
+        "https://res.cloudinary.com/dgmmzh8nb/image/upload/v1749055650/realestate-preview.png",
+        "https://res.cloudinary.com/dgmmzh8nb/image/upload/v1749055337/realestate-search.png",
+        "https://res.cloudinary.com/dgmmzh8nb/image/upload/v1749055337/realestate-virtual-tour.png"
+      ],
+      "client": "Premium Real Estate Group",
+      "date": "2023-09",
+      "technologies": ["Next.js", "React", "Three.js", "Google Maps API", "PostgreSQL", "AWS", "TypeScript"],
+      "link": "https://premium-realestate-demo.vercel.app/",
+      "featured": true,
+      "challenges": [
+        "Implementación de tours virtuales 360° interactivos",
+        "Integración con múltiples APIs de mapas y valoración",
+        "Sistema de notificaciones en tiempo real para agentes"
+      ],
+      "results": [
+        "Aumento del 180% en leads calificados",
+        "Reducción del 50% en tiempo de cierre de ventas",
+        "Expansión a 5 nuevas regiones"
+      ]
+    },
+    {
+      "id": "tetris-game",
+      "title": "Tetris Moderno - Juego Web",
+      "description": "Versión moderna del clásico juego Tetris con gráficos mejorados, efectos de sonido, multijugador online y sistema de puntuaciones global.",
+      "fullDescription": "Una reimaginación completa del clásico juego Tetris utilizando tecnologías web modernas. El proyecto incluye gráficos vectoriales suaves, efectos de partículas, sistema de sonido inmersivo, modo multijugador en tiempo real, tabla de puntuaciones global, diferentes niveles de dificultad y temas personalizables. El juego está optimizado para funcionar tanto en desktop como en dispositivos móviles con controles táctiles intuitivos.",
+      "category": "gaming",
+      "image": "https://res.cloudinary.com/dgmmzh8nb/image/upload/v1749055337/tetris-preview.png",
+      "gallery": [
+        "https://res.cloudinary.com/dgmmzh8nb/image/upload/v1749055337/tetris-preview.png",
+        "https://res.cloudinary.com/dgmmzh8nb/image/upload/v1749055337/tetris-gameplay.png",
+        "https://res.cloudinary.com/dgmmzh8nb/image/upload/v1749055337/tetris-leaderboard.png"
+      ],
+      "client": "Proyecto Personal - Gorilla Labs",
+      "date": "2023-08",
+      "technologies": ["JavaScript", "Canvas API", "WebGL", "Socket.io", "Node.js", "CSS3", "Web Audio API"],
+      "link": "https://tetris-gorilla-labs.netlify.app/",
+      "featured": false,
+      "challenges": [
+        "Optimización de rendimiento para animaciones fluidas",
+        "Implementación de multijugador en tiempo real",
+        "Compatibilidad cross-browser para Canvas API"
+      ],
+      "results": [
+        "Más de 10,000 partidas jugadas en el primer mes",
+        "Tiempo promedio de sesión de 15 minutos",
+        "Calificación de 4.8/5 estrellas de los usuarios"
+      ]
+    },
+    {
+      "id": "pokedex-app",
+      "title": "Pokédex Interactiva",
+      "description": "Aplicación web completa que permite explorar el universo Pokémon con información detallada, estadísticas, evoluciones y sistema de favoritos.",
+      "fullDescription": "Una Pokédex moderna y completa que utiliza la API oficial de Pokémon para proporcionar información detallada sobre más de 1000 Pokémon. La aplicación incluye búsqueda avanzada por nombre, tipo y generación, visualización de estadísticas con gráficos interactivos, cadenas de evolución animadas, sistema de favoritos con almacenamiento local, modo oscuro/claro, y funcionalidad offline. El diseño está inspirado en los juegos originales pero con un toque moderno y responsive.",
+      "category": "web",
+      "image": "https://res.cloudinary.com/dgmmzh8nb/image/upload/v1749055650/pokedex-preview.png",
+      "gallery": [
+        "https://res.cloudinary.com/dgmmzh8nb/image/upload/v1749055650/pokedex-preview.png",
+        "https://res.cloudinary.com/dgmmzh8nb/image/upload/v1749055337/pokedex-detail.png",
+        "https://res.cloudinary.com/dgmmzh8nb/image/upload/v1749055337/pokedex-search.png"
+      ],
+      "client": "Proyecto Personal - Gorilla Labs",
+      "date": "2023-07",
+      "technologies": ["React", "TypeScript", "Tailwind CSS", "Chart.js", "PWA", "Service Workers", "REST API"],
+      "link": "https://pokedex-gorilla-labs.netlify.app/",
+      "featured": false,
+      "challenges": [
+        "Optimización de carga para más de 1000 Pokémon",
+        "Implementación de funcionalidad offline",
+        "Creación de animaciones fluidas para evoluciones"
+      ],
+      "results": [
+        "Más de 5,000 usuarios únicos mensuales",
+        "Tiempo de carga inicial reducido a menos de 2 segundos",
+        "Funcionalidad offline completa implementada"
+      ]
+    },
+    {
+      "id": "restaurant-management",
+      "title": "Sistema de Gestión Restaurante",
+      "description": "Plataforma integral para gestión de restaurantes con POS, inventario, reservas online y análisis de ventas en tiempo real.",
+      "fullDescription": "Un sistema completo de gestión para restaurantes que digitaliza todas las operaciones del negocio. Incluye punto de venta (POS) táctil, gestión de inventario automatizada, sistema de reservas online, gestión de mesas, análisis de ventas en tiempo real, gestión de personal, programa de fidelidad para clientes y integración con servicios de delivery. La plataforma está diseñada para funcionar tanto en tablets como en computadoras de escritorio.",
+      "category": "industry",
+      "image": "https://res.cloudinary.com/dgmmzh8nb/image/upload/v1749055337/restaurant-pos.png",
+      "gallery": [
+        "https://res.cloudinary.com/dgmmzh8nb/image/upload/v1749055337/restaurant-pos.png",
+        "https://res.cloudinary.com/dgmmzh8nb/image/upload/v1749055337/restaurant-inventory.png",
+        "https://res.cloudinary.com/dgmmzh8nb/image/upload/v1749055337/restaurant-analytics.png"
+      ],
+      "client": "Cadena de Restaurantes LocalFood",
+      "date": "2023-06",
+      "technologies": ["React", "Node.js", "PostgreSQL", "Socket.io", "Stripe", "PWA", "Chart.js"],
+      "link": "https://restaurant-demo.gorilla-labs.com/",
+      "featured": true,
+      "challenges": [
+        "Sincronización en tiempo real entre múltiples dispositivos",
+        "Integración con hardware de impresión de tickets",
+        "Sistema de backup automático para evitar pérdida de datos"
+      ],
+      "results": [
+        "Reducción del 35% en tiempo de procesamiento de órdenes",
+        "Aumento del 20% en ventas promedio por mesa",
+        "Implementado en 15 restaurantes de la cadena"
+      ]
+    }
+  ]
+}
