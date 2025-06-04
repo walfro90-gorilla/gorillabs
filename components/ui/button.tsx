@@ -1,5 +1,3 @@
-"use client"
-
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
@@ -12,9 +10,12 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default: "bg-primary text-primary-foreground hover:bg-primary/90",
-        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-        outline: "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
-        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+        destructive:
+          "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+        outline:
+          "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
+        secondary:
+          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
       },
@@ -29,42 +30,26 @@ const buttonVariants = cva(
       variant: "default",
       size: "default",
     },
-  },
+  }
 )
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   asChild?: boolean
-  isMenuToggle?: boolean
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, isMenuToggle = false, ...props }, ref) => {
+  ({ className, variant, size, asChild = false, ...props }, ref) => {
     const Comp = asChild ? Slot : "button"
     return (
       <Comp
-        className={cn(
-          buttonVariants({ variant, size, className }),
-          isMenuToggle && "active:scale-95 focus:outline-none focus:ring-2 focus:ring-primary",
-        )}
+        className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
         {...props}
-        aria-haspopup={isMenuToggle ? "menu" : undefined}
-        aria-expanded={isMenuToggle && props["aria-expanded"]}
-        onClick={(e) => {
-          // Ensure event propagation and prevent any default behaviors that might interfere
-          if (isMenuToggle) {
-            e.stopPropagation()
-          }
-          // Call the original onClick if it exists
-          if (props.onClick) {
-            props.onClick(e)
-          }
-        }}
       />
     )
-  },
+  }
 )
 Button.displayName = "Button"
 

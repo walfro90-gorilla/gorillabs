@@ -41,7 +41,7 @@ This document provides instructions on how to set up Firebase Authentication for
 5. Register your app with a nickname
 6. Copy the Firebase configuration object that looks like this:
 
-```javascript
+\`\`\`javascript
 const firebaseConfig = {
   apiKey: "YOUR_API_KEY",
   authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
