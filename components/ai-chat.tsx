@@ -171,14 +171,14 @@ export default function AIChat() {
         <div className="fixed bottom-4 right-4 z-50">
           {/* Welcome Bubble */}
           {showWelcomeBubble && (
-            <div className="absolute bottom-16 right-0 mb-2 bg-white dark:bg-gray-800 text-gray-800 dark:text-white px-4 py-2 shadow-lg max-w-xs border border-gray-200 dark:border-gray-700 animate-bounce">
-              <p className="text-sm">
+            <div className="absolute bottom-16 right-0 mb-2 bg-white dark:bg-gray-800 text-gray-800 dark:text-white px-8 py-2 shadow-lg max-w-md min-w-[320px] border border-gray-200 dark:border-gray-700 animate-bounce rounded-lg flex items-center justify-center">
+              <p className="text-sm text-center break-words w-full">
                 {language === "en"
-                  ? "Hello 👋, any questions or doubts, we're here 😊"
-                  : "Hola 👋, cualquier duda o pregunta, aquí estamos 😊"}
+                  ? "Hello 👋, we're here 😊"
+                  : "Hola 👋, aquí estamos 😊"}
               </p>
               {/* Arrow pointing to chat button */}
-              <div className="absolute bottom-0 right-4 transform translate-y-1/2 rotate-45 w-2 h-2 bg-white dark:bg-gray-800 border-r border-b border-gray-200 dark:border-gray-700"></div>
+              <div className="absolute bottom-0 right-8 transform translate-y-1/2 rotate-45 w-2 h-2 bg-white dark:bg-gray-800 border-r border-b border-gray-200 dark:border-gray-700"></div>
             </div>
           )}
 
