@@ -20,6 +20,8 @@ interface Service {
   category: string
   featured: boolean
   rating: number
+  features: string[]
+  fullDescription: string
 }
 
 const FeaturedServices = () => {
@@ -37,6 +39,15 @@ const FeaturedServices = () => {
       category: "web",
       featured: true,
       rating: 4.8,
+      features: [
+        "Responsive design for all devices",
+        "SEO optimization",
+        "Content management system",
+        "Contact forms and lead capture",
+        "Analytics integration",
+      ],
+      fullDescription:
+        "Professional website with up to 5 pages, responsive design, and SEO optimization. We create responsive, modern websites that help your business stand out in the digital landscape.",
     },
     {
       id: "ecomm-standard",
@@ -47,6 +58,16 @@ const FeaturedServices = () => {
       category: "ecommerce",
       featured: true,
       rating: 4.9,
+      features: [
+        "Product catalog management",
+        "Secure payment processing",
+        "Inventory management",
+        "Order tracking",
+        "Customer accounts",
+        "Mobile-friendly shopping experience",
+      ],
+      fullDescription:
+        "Complete online store with product catalog, payment gateway, and order management. Sell your products online with a professional e-commerce platform that drives sales.",
     },
     {
       id: "mobile-app",
@@ -57,6 +78,16 @@ const FeaturedServices = () => {
       category: "mobile",
       featured: true,
       rating: 4.7,
+      features: [
+        "Native iOS and Android apps",
+        "Cross-platform development",
+        "Push notifications",
+        "Offline functionality",
+        "App store submission",
+        "User authentication and profiles",
+      ],
+      fullDescription:
+        "Native application for iOS and Android with custom design and functionality. Reach your customers on their mobile devices with a professional app that enhances user engagement.",
     },
   ])
 
@@ -164,7 +195,16 @@ const FeaturedServices = () => {
                   <ShoppingCart className="h-4 w-4" />
                   {translations.cart.addToCart}
                 </Button>
-                <Link href={`/services/${service.id}`} className="flex-1">
+                <Link
+                  href={`/services/${service.id}?title=${encodeURIComponent(
+                    service.title,
+                  )}&price=${service.price}&image=${encodeURIComponent(
+                    service.image,
+                  )}&category=${service.category}&rating=${service.rating}&description=${encodeURIComponent(
+                    service.fullDescription,
+                  )}&features=${encodeURIComponent(JSON.stringify(service.features))}`}
+                  className="flex-1"
+                >
                   <Button variant="default" className="w-full">
                     {translations.featuredServices.details}
                   </Button>
@@ -220,7 +260,16 @@ const FeaturedServices = () => {
                       <ShoppingCart className="h-4 w-4" />
                       {translations.cart.addToCart}
                     </Button>
-                    <Link href={`/services/${service.id}`} className="flex-1">
+                    <Link
+                      href={`/services/${service.id}?title=${encodeURIComponent(
+                        service.title,
+                      )}&price=${service.price}&image=${encodeURIComponent(
+                        service.image,
+                      )}&category=${service.category}&rating=${service.rating}&description=${encodeURIComponent(
+                        service.fullDescription,
+                      )}&features=${encodeURIComponent(JSON.stringify(service.features))}`}
+                      className="flex-1"
+                    >
                       <Button variant="default" className="w-full">
                         {translations.featuredServices.details}
                       </Button>
