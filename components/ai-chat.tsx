@@ -26,6 +26,9 @@ export default function AIChat() {
   const [isTyping, setIsTyping] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
 
+  const [isFirstVisit, setIsFirstVisit] = useState(true)
+  const [showWelcomeBubble, setShowWelcomeBubble] = useState(false)
+
   // Initial greeting message
   useEffect(() => {
     if (isOpen && messages.length === 0) {
@@ -111,6 +114,25 @@ export default function AIChat() {
     }
   }, [messages, language])
 
+  // Handle first visit animation
+  useEffect(() => {
+    const hasVisited = localStorage.getItem("gorilla-labs-chat-visited")
+    if (!hasVisited) {
+      // Show electricity effect and welcome bubble after 2 seconds
+      setTimeout(() => {
+        setShowWelcomeBubble(true)
+        // Hide welcome bubble after 5 seconds
+        setTimeout(() => {
+          setShowWelcomeBubble(false)
+          localStorage.setItem("gorilla-labs-chat-visited", "true")
+          setIsFirstVisit(false)
+        }, 5000)
+      }, 2000)
+    } else {
+      setIsFirstVisit(false)
+    }
+  }, [])
+
   const toggleChat = () => {
     setIsOpen(!isOpen)
     setIsMinimized(false)
@@ -146,13 +168,30 @@ export default function AIChat() {
     <>
       {/* Chat Button */}
       {!isOpen && (
-        <Button
-          onClick={toggleChat}
-          className="fixed bottom-4 right-4 z-50 h-14 w-14 rounded-full shadow-lg bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
-          size="icon"
-        >
-          <MessageSquare className="h-6 w-6" />
-        </Button>
+        <div className="fixed bottom-4 right-4 z-50">
+          {/* Welcome Bubble */}
+          {showWelcomeBubble && (
+            <div className="absolute bottom-16 right-0 mb-2 bg-white dark:bg-gray-800 text-gray-800 dark:text-white px-4 py-2 shadow-lg max-w-xs border border-gray-200 dark:border-gray-700 animate-bounce">
+              <p className="text-sm">
+                {language === "en"
+                  ? "Hello 👋, any questions or doubts, we're here 😊"
+                  : "Hola 👋, cualquier duda o pregunta, aquí estamos 😊"}
+              </p>
+              {/* Arrow pointing to chat button */}
+              <div className="absolute bottom-0 right-4 transform translate-y-1/2 rotate-45 w-2 h-2 bg-white dark:bg-gray-800 border-r border-b border-gray-200 dark:border-gray-700"></div>
+            </div>
+          )}
+
+          <Button
+            onClick={toggleChat}
+            className={`h-14 w-14 rounded-full shadow-lg bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 transition-all duration-300 ${
+              isFirstVisit ? "animate-pulse electricity-effect" : ""
+            }`}
+            size="icon"
+          >
+            <MessageSquare className="h-6 w-6" />
+          </Button>
+        </div>
       )}
 
       {/* Chat Window */}
@@ -162,7 +201,7 @@ export default function AIChat() {
             isMinimized ? "h-auto" : "h-[500px]"
           }`}
         >
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 p-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-t-lg">
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 p-4 bg-gradient-to-r from-yellow-500 to-orange-500 text-white rounded-t-lg">
             <CardTitle className="text-sm font-medium">
               {language === "en" ? "Gorilla-Labs AI Assistant" : "Asistente IA de Gorilla-Labs"}
             </CardTitle>
@@ -269,7 +308,7 @@ export default function AIChat() {
                     type="submit"
                     size="icon"
                     disabled={!message.trim() || isTyping}
-                    className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+                    className="bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600"
                   >
                     <Send className="h-4 w-4" />
                   </Button>
@@ -279,6 +318,26 @@ export default function AIChat() {
           )}
         </Card>
       )}
+      <style jsx>{`
+        @keyframes electricity {
+          0%, 100% { 
+            box-shadow: 0 0 5px #eab308, 0 0 10px #eab308, 0 0 15px #eab308, 0 0 20px #eab308;
+          }
+          25% { 
+            box-shadow: 0 0 10px #f59e0b, 0 0 20px #f59e0b, 0 0 30px #f59e0b, 0 0 40px #f59e0b;
+          }
+          50% { 
+            box-shadow: 0 0 5px #f97316, 0 0 10px #f97316, 0 0 15px #f97316, 0 0 20px #f97316;
+          }
+          75% { 
+            box-shadow: 0 0 10px #eab308, 0 0 20px #eab308, 0 0 30px #eab308, 0 0 40px #eab308;
+          }
+        }
+        
+        .electricity-effect {
+          animation: electricity 2s ease-in-out infinite;
+        }
+      `}</style>
     </>
   )
 }
