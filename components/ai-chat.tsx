@@ -34,8 +34,8 @@ export default function AIChat() {
         sender: "agent",
         text:
           language === "en"
-            ? "Hello! I'm Gorilla-Labs AI assistant. How can I help you today?"
-            : "¡Hola! Soy el asistente de IA de Gorilla-Labs. ¿Cómo puedo ayudarte hoy?",
+            ? "Hello! I'm Gorilla-Labs AI assistant. How can I help you today? Feel free to ask about our services, pricing, or any project you have in mind!"
+            : "¡Hola! Soy el asistente de IA de Gorilla-Labs. ¿Cómo puedo ayudarte hoy? ¡Pregúntame sobre nuestros servicios, precios o cualquier proyecto que tengas en mente!",
         timestamp: new Date(),
       }
       setMessages([initialMessage])
@@ -47,80 +47,67 @@ export default function AIChat() {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
   }, [messages])
 
-  // Simulate AI response
+  // Handle user messages and get responses
   useEffect(() => {
     if (messages.length > 0 && messages[messages.length - 1].sender === "user") {
       setIsTyping(true)
 
-      const timer = setTimeout(() => {
-        // Here we would normally call the OpenAI API
-        // For now, we'll simulate responses based on keywords
-        const userMessage = messages[messages.length - 1].text.toLowerCase()
-        let aiResponse = ""
+      // Add a delay to simulate thinking time
+      const typingDelay = setTimeout(async () => {
+        try {
+          const response = await fetch("/api/chat", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              message: messages[messages.length - 1].text,
+              language: language,
+            }),
+          })
 
-        if (language === "en") {
-          if (userMessage.includes("pricing") || userMessage.includes("cost") || userMessage.includes("price")) {
-            aiResponse =
-              "Our pricing varies depending on the specific requirements of your project. For a basic website, prices start at $999. For e-commerce solutions, prices start at $1,999. Would you like to schedule a consultation for a personalized quote?"
-          } else if (userMessage.includes("contact") || userMessage.includes("talk") || userMessage.includes("call")) {
-            aiResponse =
-              "You can reach our team at info@gorilla-labs.com or call us at +1 (234) 567-890. Alternatively, you can fill out the contact form on our website, and we'll get back to you as soon as possible."
-          } else if (userMessage.includes("service") || userMessage.includes("offer")) {
-            aiResponse =
-              "We offer a range of services including web development, e-commerce solutions, mobile app development, digital marketing, and industry-specific solutions. Each service is customized to meet your specific business needs. Would you like more information about any particular service?"
-          } else if (
-            userMessage.includes("portfolio") ||
-            userMessage.includes("example") ||
-            userMessage.includes("work")
-          ) {
-            aiResponse =
-              "You can view our portfolio on our website. We've worked with clients across various industries, including fashion, food delivery, corporate, and manufacturing. Each project showcases our commitment to quality and innovation."
-          } else {
-            aiResponse =
-              "Thank you for your message. Our team is dedicated to providing the best technological solutions for your business. How can we specifically help with your project needs?"
-          }
-        } else {
-          // Spanish responses
-          if (userMessage.includes("precio") || userMessage.includes("costo") || userMessage.includes("tarifa")) {
-            aiResponse =
-              "Nuestros precios varían según los requisitos específicos de tu proyecto. Para un sitio web básico, los precios comienzan en $999. Para soluciones de comercio electrónico, los precios comienzan en $1,999. ¿Te gustaría programar una consulta para obtener un presupuesto personalizado?"
-          } else if (
-            userMessage.includes("contacto") ||
-            userMessage.includes("hablar") ||
-            userMessage.includes("llamar")
-          ) {
-            aiResponse =
-              "Puedes contactar a nuestro equipo en info@gorilla-labs.com o llamarnos al +1 (234) 567-890. Alternativamente, puedes completar el formulario de contacto en nuestro sitio web, y nos pondremos en contacto contigo lo antes posible."
-          } else if (userMessage.includes("servicio") || userMessage.includes("ofrece")) {
-            aiResponse =
-              "Ofrecemos una variedad de servicios que incluyen desarrollo web, soluciones de comercio electrónico, desarrollo de aplicaciones móviles, marketing digital y soluciones específicas para la industria. Cada servicio está personalizado para satisfacer las necesidades específicas de tu negocio. ¿Te gustaría más información sobre algún servicio en particular?"
-          } else if (
-            userMessage.includes("portafolio") ||
-            userMessage.includes("ejemplo") ||
-            userMessage.includes("trabajo")
-          ) {
-            aiResponse =
-              "Puedes ver nuestro portafolio en nuestro sitio web. Hemos trabajado con clientes en varias industrias, incluyendo moda, entrega de comida, corporativo y manufactura. Cada proyecto muestra nuestro compromiso con la calidad y la innovación."
-          } else {
-            aiResponse =
-              "Gracias por tu mensaje. Nuestro equipo está dedicado a proporcionar las mejores soluciones tecnológicas para tu negocio. ¿Cómo podemos ayudarte específicamente con las necesidades de tu proyecto?"
-          }
+          const data = await response.json()
+
+          // Add a small delay to make the response feel more natural
+          setTimeout(() => {
+            setMessages((prev) => [
+              ...prev,
+              {
+                id: Date.now().toString(),
+                sender: "agent",
+                text: data.response,
+                timestamp: new Date(),
+              },
+            ])
+            setIsTyping(false)
+          }, 800)
+        } catch (error) {
+          console.error("Error calling chat API:", error)
+
+          // Final fallback if everything fails
+          const finalFallback =
+            language === "en"
+              ? "I'm experiencing technical difficulties. Please contact our team directly at info@gorilla-labs.com or call +1 (234) 567-890 for immediate assistance."
+              : "Estoy experimentando dificultades técnicas. Por favor contacta directamente a nuestro equipo en info@gorilla-labs.com o llama al +1 (234) 567-890 para asistencia inmediata."
+
+          setTimeout(() => {
+            setMessages((prev) => [
+              ...prev,
+              {
+                id: Date.now().toString(),
+                sender: "agent",
+                text: finalFallback,
+                timestamp: new Date(),
+              },
+            ])
+            setIsTyping(false)
+          }, 800)
         }
+      }, 1200)
 
-        setMessages((prev) => [
-          ...prev,
-          {
-            id: Date.now().toString(),
-            sender: "agent",
-            text: aiResponse,
-            timestamp: new Date(),
-          },
-        ])
-
-        setIsTyping(false)
-      }, 1500)
-
-      return () => clearTimeout(timer)
+      return () => {
+        clearTimeout(typingDelay)
+      }
     }
   }, [messages, language])
 
@@ -161,7 +148,7 @@ export default function AIChat() {
       {!isOpen && (
         <Button
           onClick={toggleChat}
-          className="fixed bottom-4 right-4 z-50 h-14 w-14 rounded-full shadow-lg"
+          className="fixed bottom-4 right-4 z-50 h-14 w-14 rounded-full shadow-lg bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
           size="icon"
         >
           <MessageSquare className="h-6 w-6" />
@@ -171,11 +158,11 @@ export default function AIChat() {
       {/* Chat Window */}
       {isOpen && (
         <Card
-          className={`fixed bottom-4 right-4 z-50 w-80 shadow-lg transition-all duration-300 md:w-96 ${
+          className={`fixed bottom-4 right-4 z-50 w-80 shadow-xl transition-all duration-300 md:w-96 ${
             isMinimized ? "h-auto" : "h-[500px]"
           }`}
         >
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 p-4">
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 p-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-t-lg">
             <CardTitle className="text-sm font-medium">
               {language === "en" ? "Gorilla-Labs AI Assistant" : "Asistente IA de Gorilla-Labs"}
             </CardTitle>
@@ -183,13 +170,19 @@ export default function AIChat() {
               <Button
                 variant="ghost"
                 size="icon"
-                className="h-8 w-8"
+                className="h-8 w-8 text-white hover:bg-white/20"
                 onClick={toggleMinimize}
                 aria-label={isMinimized ? "Maximize chat" : "Minimize chat"}
               >
                 {isMinimized ? <Maximize2 className="h-4 w-4" /> : <Minimize2 className="h-4 w-4" />}
               </Button>
-              <Button variant="ghost" size="icon" className="h-8 w-8" onClick={toggleChat} aria-label="Close chat">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="h-8 w-8 text-white hover:bg-white/20"
+                onClick={toggleChat}
+                aria-label="Close chat"
+              >
                 <X className="h-4 w-4" />
               </Button>
             </div>
@@ -216,7 +209,9 @@ export default function AIChat() {
                       <div>
                         <div
                           className={`rounded-lg p-3 ${
-                            msg.sender === "user" ? "bg-primary text-primary-foreground" : "bg-muted"
+                            msg.sender === "user"
+                              ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white"
+                              : "bg-muted"
                           }`}
                         >
                           {msg.text}
@@ -270,7 +265,12 @@ export default function AIChat() {
                     onChange={(e) => setMessage(e.target.value)}
                     className="flex-1"
                   />
-                  <Button type="submit" size="icon" disabled={!message.trim()}>
+                  <Button
+                    type="submit"
+                    size="icon"
+                    disabled={!message.trim() || isTyping}
+                    className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+                  >
                     <Send className="h-4 w-4" />
                   </Button>
                 </form>
