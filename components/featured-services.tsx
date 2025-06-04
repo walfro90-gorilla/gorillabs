@@ -180,11 +180,10 @@ const FeaturedServices = () => {
             className="flex transition-transform duration-700 ease-in-out"
             style={{
               transform: `translateX(-${currentIndex * 100}%)`,
-              width: `${services.length * 100}%`,
             }}
           >
-            {services.map((service) => (
-              <div key={service.id} className="w-full px-2" style={{ width: "100%" }}>
+            {services.map((service, index) => (
+              <div key={service.id} className="flex-shrink-0 w-full px-2">
                 <Card className="service-card overflow-hidden transition-all duration-300">
                   <div className="relative h-48 w-full overflow-hidden">
                     <Image
