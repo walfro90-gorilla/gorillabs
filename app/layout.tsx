@@ -10,6 +10,7 @@ import { Toaster } from "@/components/ui/toaster"
 import { CartProvider } from "@/context/cart-context"
 import { AuthProvider } from "@/context/auth-context"
 import { LanguageProvider } from "@/context/language-context"
+import Script from "next/script"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -65,7 +66,7 @@ export const metadata: Metadata = {
     shortcut: "/favicon.ico",
     apple: "/favicon.ico",
   },
-    generator: 'v0.dev'
+  generator: "v0.dev",
 }
 
 export default function RootLayout({
@@ -153,6 +154,20 @@ export default function RootLayout({
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
       </head>
       <body className={`${inter.className} w-full overflow-x-hidden`}>
+        {/* Google Analytics */}
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-Q337SR0CSL" strategy="afterInteractive" />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-Q337SR0CSL', {
+              page_title: document.title,
+              page_location: window.location.href,
+            });
+          `}
+        </Script>
+
         <ThemeProvider attribute="class" defaultTheme="light">
           <LanguageProvider>
             <AuthProvider>
