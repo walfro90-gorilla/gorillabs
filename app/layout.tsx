@@ -152,8 +152,7 @@ export default function RootLayout({
     <html lang="es" suppressHydrationWarning className="w-full overflow-x-hidden">
       <head>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
-      </head>
-      <body className={`${inter.className} w-full overflow-x-hidden`}>
+
         {/* Google Analytics */}
         <Script src="https://www.googletagmanager.com/gtag/js?id=G-Q337SR0CSL" strategy="afterInteractive" />
         <Script id="google-analytics" strategy="afterInteractive">
@@ -167,6 +166,9 @@ export default function RootLayout({
             });
           `}
         </Script>
+      </head>
+      <body className={`${inter.className} w-full overflow-x-hidden`}>
+
 
         <ThemeProvider attribute="class" defaultTheme="light">
           <LanguageProvider>
