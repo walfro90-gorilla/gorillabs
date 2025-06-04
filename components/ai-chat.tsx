@@ -184,7 +184,7 @@ export default function AIChat() {
 
           <Button
             onClick={toggleChat}
-            className={`h-14 w-14 rounded-full shadow-lg bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 transition-all duration-300 ${
+            className={`h-14 w-14 rounded-full shadow-lg bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 transition-all duration-300 relative overflow-hidden ${
               isFirstVisit ? "animate-pulse electricity-effect" : ""
             }`}
             size="icon"
@@ -318,26 +318,50 @@ export default function AIChat() {
           )}
         </Card>
       )}
-      <style jsx>{`
-        @keyframes electricity {
-          0%, 100% { 
-            box-shadow: 0 0 5px #eab308, 0 0 10px #eab308, 0 0 15px #eab308, 0 0 20px #eab308;
-          }
-          25% { 
-            box-shadow: 0 0 10px #f59e0b, 0 0 20px #f59e0b, 0 0 30px #f59e0b, 0 0 40px #f59e0b;
-          }
-          50% { 
-            box-shadow: 0 0 5px #f97316, 0 0 10px #f97316, 0 0 15px #f97316, 0 0 20px #f97316;
-          }
-          75% { 
-            box-shadow: 0 0 10px #eab308, 0 0 20px #eab308, 0 0 30px #eab308, 0 0 40px #eab308;
-          }
-        }
-        
-        .electricity-effect {
-          animation: electricity 2s ease-in-out infinite;
-        }
-      `}</style>
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+    @keyframes electricity-glow {
+      0%, 100% { 
+        box-shadow: 0 0 8px #eab308, 0 0 16px #eab308, 0 0 24px #eab308, 0 0 32px #eab308, inset 0 0 8px rgba(234, 179, 8, 0.3);
+        filter: brightness(1.1);
+      }
+      25% { 
+        box-shadow: 0 0 12px #f59e0b, 0 0 24px #f59e0b, 0 0 36px #f59e0b, 0 0 48px #f59e0b, inset 0 0 12px rgba(245, 158, 11, 0.3);
+        filter: brightness(1.2);
+      }
+      50% { 
+        box-shadow: 0 0 8px #f97316, 0 0 16px #f97316, 0 0 24px #f97316, 0 0 32px #f97316, inset 0 0 8px rgba(249, 115, 22, 0.3);
+        filter: brightness(1.15);
+      }
+      75% { 
+        box-shadow: 0 0 12px #eab308, 0 0 24px #eab308, 0 0 36px #eab308, 0 0 48px #eab308, inset 0 0 12px rgba(234, 179, 8, 0.3);
+        filter: brightness(1.2);
+      }
+    }
+    
+    .electricity-effect {
+      animation: electricity-glow 2s ease-in-out infinite !important;
+      position: relative !important;
+      z-index: 1000 !important;
+    }
+    
+    .electricity-effect::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, #eab308, #f59e0b, #f97316, #eab308);
+      z-index: -1;
+      opacity: 0.7;
+      animation: electricity-glow 2s ease-in-out infinite;
+    }
+  `,
+        }}
+      />
     </>
   )
 }
