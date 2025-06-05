@@ -31,7 +31,9 @@ export default function SEO({
   alternateLanguages,
   serviceCategory,
 }: SEOProps) {
-  const fullTitle = title.includes("Gorilla Labs") ? title : `${title} - Gorilla Labs`
+  // Ensure title is a non-empty string
+  const safeTitle = typeof title === "string" && title.trim() ? title : "Gorilla Labs"
+  const fullTitle = safeTitle.includes("Gorilla Labs") ? safeTitle : `${safeTitle} - Gorilla Labs`
 
   const generateTechKeywords = (technologies?: string[], serviceCategory?: string) => {
     const baseKeywords = keywords || ""
