@@ -122,11 +122,13 @@ export default function ServicesPage() {
   return (
     <div className="container mx-auto py-8">
       <Seo
-        title="Servicios de Desarrollo Tecnológico"
-        description="Servicios profesionales de desarrollo: Websites desde $500, E-commerce desde $1,200, Apps móviles desde $80/hora. Consultoría tecnológica y soluciones industriales."
-        keywords="servicios desarrollo web, e-commerce profesional, apps móviles, consultoría tecnológica, precios desarrollo"
+        title="Technology Development Services"
+        description="Professional development services: Websites from $500, E-commerce from $1,200, Mobile Apps from $80/hour. Expert consultation in El Paso TX and Ciudad Juárez."
+        keywords="web development services, e-commerce development, mobile app development, El Paso TX, Ciudad Juárez, React, Next.js, Flutter"
         canonical="https://gorillalabs.dev/services"
         type="website"
+        location="El Paso TX, Ciudad Juárez"
+        technologies={["React", "Next.js", "Flutter", "Shopify", "React Native"]}
       />
 
       <h1 className="text-4xl font-bold mb-8 text-center">{t("services.title", "Our Services")}</h1>

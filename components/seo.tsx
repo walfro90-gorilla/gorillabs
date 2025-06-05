@@ -13,6 +13,7 @@ interface SEOProps {
   location?: string
   language?: "en" | "es"
   alternateLanguages?: { lang: string; url: string }[]
+  serviceCategory?: string
 }
 
 export default function SEO({
@@ -28,8 +29,19 @@ export default function SEO({
   location = "El Paso TX, Ciudad Juárez",
   language = "es",
   alternateLanguages,
+  serviceCategory,
 }: SEOProps) {
   const fullTitle = title.includes("Gorilla Labs") ? title : `${title} - Gorilla Labs`
+
+  const generateTechKeywords = (technologies?: string[], serviceCategory?: string) => {
+    const baseKeywords = keywords || ""
+    const techKeywords = technologies ? technologies.join(", ") : ""
+    const locationKeywords = "El Paso TX, Ciudad Juárez, Texas, Chihuahua"
+
+    return [baseKeywords, techKeywords, locationKeywords].filter(Boolean).join(", ")
+  }
+
+  const finalKeywords = generateTechKeywords(technologies, serviceCategory)
 
   return (
     <Head>
@@ -42,7 +54,7 @@ export default function SEO({
       <link rel="icon" href="/favicon.ico" />
 
       {/* Keywords */}
-      {keywords && <meta name="keywords" content={keywords} />}
+      {finalKeywords && <meta name="keywords" content={finalKeywords} />}
 
       {/* Location */}
       <meta name="geo.region" content="US-TX" />

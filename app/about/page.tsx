@@ -101,11 +101,12 @@ export default function AboutPage() {
   return (
     <div className="container py-16">
       <Seo
-        title="Acerca de Nosotros"
-        description="Conoce a Gorilla Labs, equipo de tecnólogos apasionados desde 2020. Especializados en desarrollo web, e-commerce y apps móviles. Transformamos negocios con soluciones digitales innovadoras."
-        keywords="equipo desarrollo, empresa tecnológica, historia Gorilla Labs, desarrolladores web, diseñadores UX/UI"
+        title="About Us"
+        description="Meet Gorilla Labs, passionate technology team since 2020. Specialized in web development, e-commerce and mobile apps. Transforming businesses with innovative digital solutions in El Paso TX and Ciudad Juárez."
+        keywords="development team, technology company, Gorilla Labs history, web developers, UX/UI designers, El Paso TX, Ciudad Juárez"
         canonical="https://gorillalabs.dev/about"
         type="website"
+        location="El Paso TX, Ciudad Juárez"
         language={language}
       />
       {/* Hero Section */}

@@ -125,6 +125,22 @@ const sampleBlogPosts: BlogPost[] = [
   },
 ]
 
+const getCategoryKeywords = (category: string, title: string) => {
+  const categoryKeywords = {
+    design: "web design, UI/UX, design trends, user experience",
+    ecommerce: "e-commerce, online store, digital commerce, Shopify",
+    mobile: "mobile apps, iOS, Android, Flutter, React Native",
+    marketing: "digital marketing, SEO, Google Ads, social media",
+    industry: "industrial automation, IoT, Industry 4.0",
+    security: "cybersecurity, data protection, security best practices",
+  }
+
+  const baseKeywords = categoryKeywords[category as keyof typeof categoryKeywords] || "technology"
+  const titleKeywords = title.split(" ").slice(0, 5).join(", ")
+
+  return `${baseKeywords}, ${titleKeywords}, El Paso TX, Ciudad Juárez`
+}
+
 export default function BlogPostPage() {
   const { language } = useLanguage()
   const params = useParams()
@@ -194,12 +210,13 @@ export default function BlogPostPage() {
       {post && (
         <Seo
           title={post.title}
-          description={post.excerpt}
-          keywords={`${getCategoryLabel(post.category)}, ${post.title.split(" ").slice(0, 5).join(", ")}`}
+          description={`${post.excerpt} Read more technology insights from Gorilla Labs experts in El Paso TX and Ciudad Juárez.`}
+          keywords={getCategoryKeywords(post.category, post.title)}
           canonical={`https://gorillalabs.dev/blog/${post.slug}`}
           type="article"
           author={post.author}
           ogImage={post.coverImage}
+          location="El Paso TX, Ciudad Juárez"
         />
       )}
       <Link

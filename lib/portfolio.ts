@@ -36,16 +36,17 @@ export function getProjectsByCategory(category: string): Project[] {
 
 export function getProjectKeywords(project: Project): string {
   const categoryKeywords = {
-    web: "desarrollo web, sitio web, website",
-    ecommerce: "e-commerce, tienda online, comercio electrónico",
-    gaming: "juego, gaming, entretenimiento digital",
-    industry: "solución industrial, automatización, IoT",
+    web: "website development, web application, responsive design",
+    ecommerce: "e-commerce development, online store, shopping cart",
+    gaming: "game development, interactive entertainment, gaming app",
+    industry: "industrial solution, automation, IoT implementation",
   }
 
-  const baseKeywords = categoryKeywords[project.category as keyof typeof categoryKeywords] || "proyecto digital"
+  const baseKeywords = categoryKeywords[project.category as keyof typeof categoryKeywords] || "digital project"
   const techKeywords = project.technologies.slice(0, 5).join(", ")
+  const locationKeywords = "El Paso TX, Ciudad Juárez"
 
-  return `${baseKeywords}, ${techKeywords}, ${project.client}`
+  return `${baseKeywords}, ${techKeywords}, ${project.client}, ${locationKeywords}`
 }
 
 export function getProjectSchema(project: Project) {

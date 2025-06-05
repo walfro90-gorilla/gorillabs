@@ -14,6 +14,37 @@ import { useLanguage } from "@/context/language-context"
 import { getServiceById, getServiceKeywords, type Service } from "@/lib/services"
 import { Seo } from "@/components/seo"
 
+const getServiceTitle = (service: Service) => {
+  const titleMap: Record<string, string> = {
+    "1": "Website Development",
+    "2": "E-commerce Development",
+    "3": "Mobile App Development",
+    "4": "Digital Marketing Services",
+    "5": "Industrial Automation Solutions",
+  }
+
+  return titleMap[service.id] || service.title.en
+}
+
+const getServiceTechnologies = (serviceId: string): string[] => {
+  // Replace with your actual logic to fetch technologies based on serviceId
+  // This is just a placeholder
+  switch (serviceId) {
+    case "1":
+      return ["React", "Next.js", "Node.js"]
+    case "2":
+      return ["Shopify", "WooCommerce", "Magento"]
+    case "3":
+      return ["React Native", "Swift", "Kotlin"]
+    case "4":
+      return ["SEO", "Google Ads", "Social Media Marketing"]
+    case "5":
+      return ["PLC", "SCADA", "Robotics"]
+    default:
+      return []
+  }
+}
+
 export default function ServiceDetailPage() {
   const params = useParams()
   const id = params?.id as string
@@ -95,14 +126,16 @@ export default function ServiceDetailPage() {
     <div className="container mx-auto py-8">
       {service && (
         <Seo
-          title={`${service.title[languageContext.language] || service.title.en}`}
-          description={`${service.fullDescription[languageContext.language] || service.fullDescription.en} Precio desde $${service.price}${service.id === "3" ? "/hora" : ""}. ${service.features.slice(0, 2).join(" y ")}.`}
+          title={getServiceTitle(service)}
+          description={`${service.fullDescription[languageContext.language] || service.fullDescription.en} Starting at $${service.price}${service.id === "3" ? "/hour" : ""}. Available in El Paso TX and Ciudad Juárez. ${service.features.slice(0, 2).join(" and ")}.`}
           keywords={getServiceKeywords(service.id)}
           canonical={`https://gorillalabs.dev/services/${service.id}`}
           type="service"
           price={service.price.toString()}
-          technologies={service.features}
+          technologies={getServiceTechnologies(service.id)}
+          location="El Paso TX, Ciudad Juárez"
           language={languageContext.language}
+          serviceCategory={service.category}
         />
       )}
       <Link href="/services" className="text-primary hover:underline mb-4 inline-flex items-center gap-2">

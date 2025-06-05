@@ -32,14 +32,29 @@ export function getServiceById(id: string): Service | undefined {
 
 export function getServiceKeywords(serviceId: string): string {
   const keywordMap: Record<string, string> = {
-    "1": "desarrollo web, sitios web profesionales, responsive design, React, Next.js, HTML5, CSS3",
-    "2": "tienda online, e-commerce, comercio electrónico, Shopify, WooCommerce, carrito de compras",
-    "3": "aplicaciones móviles, apps iOS, apps Android, Flutter, React Native, desarrollo móvil",
-    "4": "marketing digital, SEO, SEM, redes sociales, Google Ads, estrategia digital",
-    "5": "automatización industrial, IoT, Industry 4.0, sistemas industriales, sensores, monitoreo",
+    "1": "website development, React, Next.js, TypeScript, HTML5, CSS3, responsive design, web applications, frontend development, backend development, full-stack development",
+    "2": "e-commerce development, online store, Shopify, WooCommerce, Stripe, PayPal, shopping cart, payment gateway, inventory management, product catalog",
+    "3": "mobile app development, iOS apps, Android apps, Flutter, React Native, cross-platform development, native development, app store optimization",
+    "4": "digital marketing, SEO optimization, Google Ads, social media marketing, content marketing, email marketing, analytics, conversion optimization",
+    "5": "industrial automation, IoT solutions, Industry 4.0, sensor integration, data monitoring, SCADA systems, PLC programming, industrial software",
   }
 
-  return keywordMap[serviceId] || "desarrollo tecnológico, soluciones digitales"
+  const baseKeywords = keywordMap[serviceId] || "technology solutions, software development"
+  const locationKeywords = "El Paso TX, Ciudad Juárez, Texas, Chihuahua, border technology"
+
+  return `${baseKeywords}, ${locationKeywords}`
+}
+
+export function getServiceTechnologies(serviceId: string): string[] {
+  const techMap: Record<string, string[]> = {
+    "1": ["React", "Next.js", "TypeScript", "Node.js", "HTML5", "CSS3", "JavaScript"],
+    "2": ["Shopify", "WooCommerce", "Stripe", "PayPal", "React", "Node.js", "MongoDB"],
+    "3": ["Flutter", "React Native", "iOS", "Android", "Firebase", "Swift", "Kotlin"],
+    "4": ["Google Analytics", "Google Ads", "SEO Tools", "Social Media APIs", "Email Marketing"],
+    "5": ["IoT", "SCADA", "PLC", "Industrial Sensors", "Data Analytics", "Cloud Computing"],
+  }
+
+  return techMap[serviceId] || ["Custom Technology"]
 }
 
 export function getServiceSchema(service: Service) {

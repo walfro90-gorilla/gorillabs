@@ -177,11 +177,12 @@ export default function BlogPage() {
   return (
     <div className="container py-16">
       <Seo
-        title="Blog Tecnológico"
-        description="Artículos sobre desarrollo web, tendencias tecnológicas, SEO, e-commerce y aplicaciones móviles. Consejos y guías de expertos en Gorilla Labs."
-        keywords="blog tecnología, artículos desarrollo web, tendencias digitales, SEO, e-commerce, apps móviles"
+        title="Technology Blog"
+        description="Articles about web development, technology trends, SEO, e-commerce and mobile applications. Expert tips and guides from Gorilla Labs in El Paso TX and Ciudad Juárez."
+        keywords="technology blog, web development articles, digital trends, SEO, e-commerce, mobile apps, El Paso TX, Ciudad Juárez"
         canonical="https://gorillalabs.dev/blog"
         type="website"
+        location="El Paso TX, Ciudad Juárez"
       />
       <div className="mb-10 text-center">
         <h1 className="mb-2 text-4xl font-bold">{language === "en" ? "Blog" : "Blog"}</h1>

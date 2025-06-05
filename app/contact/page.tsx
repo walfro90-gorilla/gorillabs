@@ -66,11 +66,12 @@ export default function ContactPage() {
   return (
     <div className="container py-16">
       <Seo
-        title="Contacto"
-        description="Contáctanos para tu proyecto tecnológico. Oficinas en El Paso TX y Ciudad Juárez. Email: info@gorillabs.dev, Tel: +52 (656) 573 1023. Consulta gratuita disponible."
-        keywords="contacto Gorilla Labs, consulta gratuita, desarrollo web El Paso, programadores Ciudad Juárez"
+        title="Contact Us"
+        description="Contact us for your technology project. Offices in El Paso TX and Ciudad Juárez. Email: info@gorillabs.dev, Phone: +52 (656) 573 1023. Free consultation available."
+        keywords="contact Gorilla Labs, free consultation, web development El Paso, programmers Ciudad Juárez, technology consultation"
         canonical="https://gorillalabs.dev/contact"
         type="website"
+        location="El Paso TX, Ciudad Juárez"
         language={language}
       />
       <div className="mb-10 text-center">

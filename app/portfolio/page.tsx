@@ -30,11 +30,13 @@ export default function PortfolioPage() {
   return (
     <div className="container py-16">
       <Seo
-        title="Portafolio de Proyectos"
-        description="Explora nuestros proyectos exitosos: e-commerce, apps móviles, websites corporativos y soluciones industriales. Casos de éxito con React, Next.js, Flutter y más tecnologías."
-        keywords="portafolio desarrollo web, proyectos e-commerce, apps móviles, casos de éxito, React, Next.js, Flutter"
+        title="Project Portfolio"
+        description="Explore our successful projects: e-commerce, mobile apps, corporate websites and industrial solutions. Success cases with React, Next.js, Flutter and more technologies in El Paso TX and Ciudad Juárez."
+        keywords="web development portfolio, e-commerce projects, mobile apps, success cases, React, Next.js, Flutter, El Paso TX, Ciudad Juárez"
         canonical="https://gorillalabs.dev/portfolio"
         type="website"
+        location="El Paso TX, Ciudad Juárez"
+        technologies={["React", "Next.js", "Flutter", "Shopify", "React Native", "TypeScript"]}
       />
       <div className="mb-10 text-center">
         <h1 className="mb-2 text-4xl font-bold">Our Portfolio</h1>
