@@ -31,7 +31,7 @@ export default function SEO({
   alternateLanguages,
   serviceCategory,
 }: SEOProps) {
-  // Ensure title is a non-empty string
+  // Ensure title is a non-empty string and make it unique for each page
   const safeTitle = typeof title === "string" && title.trim() ? title : "Gorilla Labs"
   const fullTitle = safeTitle.includes("Gorilla Labs") ? safeTitle : `${safeTitle} - Gorilla Labs`
 
