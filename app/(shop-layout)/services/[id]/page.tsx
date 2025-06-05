@@ -11,7 +11,7 @@ import Image from "next/image"
 import { useCart } from "@/context/cart-context"
 import { useToast } from "@/hooks/use-toast"
 import { useLanguage } from "@/context/language-context"
-import { getServiceById, getServiceKeywords, getServiceSchema, type Service } from "@/lib/services"
+import { getServiceById, getServiceKeywords, type Service } from "@/lib/services"
 import { Seo } from "@/components/seo"
 
 export default function ServiceDetailPage() {
@@ -103,14 +103,6 @@ export default function ServiceDetailPage() {
           price={service.price.toString()}
           technologies={service.features}
           language={languageContext.language}
-        />
-      )}
-      {service && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(getServiceSchema(service)),
-          }}
         />
       )}
       <Link href="/services" className="text-primary hover:underline mb-4 inline-flex items-center gap-2">

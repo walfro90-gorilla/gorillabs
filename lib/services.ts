@@ -1,4 +1,36 @@
-export const getServiceKeywords = (serviceId: string): string => {
+import servicesData from "@/data/services.json"
+
+export interface Service {
+  id: string
+  title: {
+    en: string
+    es: string
+  }
+  description: {
+    en: string
+    es: string
+  }
+  fullDescription: {
+    en: string
+    es: string
+  }
+  price: number
+  image: string
+  category: string
+  features: string[]
+  rating: number
+  featured: boolean
+}
+
+export function getAllServices(): Service[] {
+  return servicesData as Service[]
+}
+
+export function getServiceById(id: string): Service | undefined {
+  return getAllServices().find((service) => service.id === id)
+}
+
+export function getServiceKeywords(serviceId: string): string {
   const keywordMap: Record<string, string> = {
     "1": "desarrollo web, sitios web profesionales, responsive design, React, Next.js, HTML5, CSS3",
     "2": "tienda online, e-commerce, comercio electrónico, Shopify, WooCommerce, carrito de compras",
@@ -10,7 +42,7 @@ export const getServiceKeywords = (serviceId: string): string => {
   return keywordMap[serviceId] || "desarrollo tecnológico, soluciones digitales"
 }
 
-export const getServiceSchema = (service: Service) => {
+export function getServiceSchema(service: Service) {
   return {
     "@context": "https://schema.org",
     "@type": "Service",

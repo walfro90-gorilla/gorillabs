@@ -128,13 +128,6 @@ export default function ServicesPage() {
         canonical="https://gorillalabs.dev/services"
         type="website"
       />
-      <Seo
-        title={t("services.seoTitle", "Our Services - Gorilla Labs")}
-        description={t(
-          "services.seoDescription",
-          "Explore our range of web development, e-commerce, and mobile app services.",
-        )}
-      />
 
       <h1 className="text-4xl font-bold mb-8 text-center">{t("services.title", "Our Services")}</h1>
 

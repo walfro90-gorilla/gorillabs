@@ -50,7 +50,6 @@ export default function SEO({
 
       {/* Language */}
       <meta httpEquiv="content-language" content={language} />
-      <html lang={language} />
 
       {/* Canonical URL */}
       {canonical && <link rel="canonical" href={canonical} />}
