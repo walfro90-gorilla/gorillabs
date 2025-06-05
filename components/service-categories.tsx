@@ -79,6 +79,13 @@ const ServiceCategories = () => {
       description: translations.services.webDevDesc,
       link: "/services/web-development",
     },
+    {
+      id: "ai-implementation",
+      icon: <Code className="h-10 w-10 text-primary" />,
+      title: translations.services.aiImplementation || "IA Implementation",
+      description: translations.services.aiImplementationDesc || "Integrate AI solutions into your business processes",
+      link: "/services/ai-implementation",
+    },
   ]
 
   const handleServiceClick = (category: any) => {
@@ -112,6 +119,8 @@ const ServiceCategories = () => {
         "Streamline your business operations with custom industry solutions. We develop ERP systems, CRM platforms, inventory management, and specialized software tailored to your industry needs.",
       "web-development":
         "Create stunning, responsive websites that convert visitors into customers. We build modern websites using the latest technologies, ensuring fast loading times, SEO optimization, and mobile responsiveness.",
+      "ai-implementation":
+        "Transform your business with cutting-edge AI solutions. We implement machine learning models, chatbots, automation systems, and intelligent analytics to streamline your operations and enhance decision-making capabilities.",
     }
     return descriptions[categoryId] || categories.find((cat) => cat.id === categoryId)?.description
   }
@@ -123,6 +132,7 @@ const ServiceCategories = () => {
       marketing: 799,
       industry: 4999,
       "web-development": 1299,
+      "ai-implementation": 3999,
     }
     return prices[categoryId] || 999
   }
@@ -134,6 +144,7 @@ const ServiceCategories = () => {
       marketing: "/placeholder.svg?height=400&width=600",
       industry: "/placeholder.svg?height=400&width=600",
       "web-development": "https://res.cloudinary.com/dgmmzh8nb/image/upload/v1748983315/syf7khoovwrnewmaigin.png",
+      "ai-implementation": "/placeholder.svg?height=400&width=600",
     }
     return images[categoryId] || "/placeholder.svg?height=400&width=600"
   }
@@ -189,6 +200,16 @@ const ServiceCategories = () => {
         "Performance optimization",
         "Security implementation",
         "Maintenance and support",
+      ],
+      "ai-implementation": [
+        "Custom AI model development",
+        "Chatbot and virtual assistant integration",
+        "Process automation with AI",
+        "Predictive analytics implementation",
+        "Machine learning algorithms",
+        "Natural language processing",
+        "Computer vision solutions",
+        "AI training and consultation",
       ],
     }
     return features[categoryId] || ["Professional service delivery", "Quality assurance", "Ongoing support"]
