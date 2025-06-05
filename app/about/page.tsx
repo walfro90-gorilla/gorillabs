@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { ArrowRight } from "lucide-react"
 import { useLanguage } from "@/context/language-context"
+import { Seo } from "@/components/seo"
 
 interface TeamMember {
   name: string
@@ -99,6 +100,14 @@ export default function AboutPage() {
 
   return (
     <div className="container py-16">
+      <Seo
+        title="Acerca de Nosotros"
+        description="Conoce a Gorilla Labs, equipo de tecnólogos apasionados desde 2020. Especializados en desarrollo web, e-commerce y apps móviles. Transformamos negocios con soluciones digitales innovadoras."
+        keywords="equipo desarrollo, empresa tecnológica, historia Gorilla Labs, desarrolladores web, diseñadores UX/UI"
+        canonical="https://gorillalabs.dev/about"
+        type="website"
+        language={language}
+      />
       {/* Hero Section */}
       <div className="mb-16 grid gap-8 md:grid-cols-2 md:items-center">
         <div>

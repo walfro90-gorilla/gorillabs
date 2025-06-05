@@ -122,6 +122,13 @@ export default function ServicesPage() {
   return (
     <div className="container mx-auto py-8">
       <Seo
+        title="Servicios de Desarrollo Tecnológico"
+        description="Servicios profesionales de desarrollo: Websites desde $500, E-commerce desde $1,200, Apps móviles desde $80/hora. Consultoría tecnológica y soluciones industriales."
+        keywords="servicios desarrollo web, e-commerce profesional, apps móviles, consultoría tecnológica, precios desarrollo"
+        canonical="https://gorillalabs.dev/services"
+        type="website"
+      />
+      <Seo
         title={t("services.seoTitle", "Our Services - Gorilla Labs")}
         description={t(
           "services.seoDescription",

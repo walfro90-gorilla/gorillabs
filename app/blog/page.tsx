@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
 import { useLanguage } from "@/context/language-context"
 import { Search, Calendar, Clock, ArrowRight, User } from "lucide-react"
+import { Seo } from "@/components/seo"
 
 interface BlogPost {
   id: string
@@ -175,6 +176,13 @@ export default function BlogPage() {
 
   return (
     <div className="container py-16">
+      <Seo
+        title="Blog Tecnológico"
+        description="Artículos sobre desarrollo web, tendencias tecnológicas, SEO, e-commerce y aplicaciones móviles. Consejos y guías de expertos en Gorilla Labs."
+        keywords="blog tecnología, artículos desarrollo web, tendencias digitales, SEO, e-commerce, apps móviles"
+        canonical="https://gorillalabs.dev/blog"
+        type="website"
+      />
       <div className="mb-10 text-center">
         <h1 className="mb-2 text-4xl font-bold">{language === "en" ? "Blog" : "Blog"}</h1>
         <p className="mx-auto max-w-2xl text-muted-foreground">

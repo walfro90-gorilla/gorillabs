@@ -12,6 +12,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { useToast } from "@/hooks/use-toast"
 import { useLanguage } from "@/context/language-context"
 import { Mail, Phone, MapPin, Send } from "lucide-react"
+import { Seo } from "@/components/seo"
 
 export default function ContactPage() {
   const { toast } = useToast()
@@ -64,6 +65,14 @@ export default function ContactPage() {
 
   return (
     <div className="container py-16">
+      <Seo
+        title="Contacto"
+        description="Contáctanos para tu proyecto tecnológico. Oficinas en El Paso TX y Ciudad Juárez. Email: info@gorillabs.dev, Tel: +52 (656) 573 1023. Consulta gratuita disponible."
+        keywords="contacto Gorilla Labs, consulta gratuita, desarrollo web El Paso, programadores Ciudad Juárez"
+        canonical="https://gorillalabs.dev/contact"
+        type="website"
+        language={language}
+      />
       <div className="mb-10 text-center">
         <h1 className="mb-2 text-4xl font-bold">{language === "en" ? "Contact Us" : "Contáctanos"}</h1>
         <p className="mx-auto max-w-2xl text-muted-foreground">

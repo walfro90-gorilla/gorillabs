@@ -18,6 +18,7 @@ import { Badge } from "@/components/ui/badge"
 import { useLanguage } from "@/context/language-context"
 import { ExternalLink, ArrowRight, Calendar, User } from "lucide-react"
 import { getAllProjects, getProjectsByCategory } from "@/lib/portfolio"
+import { Seo } from "@/components/seo"
 
 export default function PortfolioPage() {
   const { translations } = useLanguage()
@@ -28,6 +29,13 @@ export default function PortfolioPage() {
 
   return (
     <div className="container py-16">
+      <Seo
+        title="Portafolio de Proyectos"
+        description="Explora nuestros proyectos exitosos: e-commerce, apps móviles, websites corporativos y soluciones industriales. Casos de éxito con React, Next.js, Flutter y más tecnologías."
+        keywords="portafolio desarrollo web, proyectos e-commerce, apps móviles, casos de éxito, React, Next.js, Flutter"
+        canonical="https://gorillalabs.dev/portfolio"
+        type="website"
+      />
       <div className="mb-10 text-center">
         <h1 className="mb-2 text-4xl font-bold">Our Portfolio</h1>
         <p className="mx-auto max-w-2xl text-muted-foreground">

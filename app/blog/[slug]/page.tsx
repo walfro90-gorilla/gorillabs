@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 import { useLanguage } from "@/context/language-context"
 import { Calendar, Clock, User, ArrowLeft, Share2, Facebook, Twitter, Linkedin } from "lucide-react"
+import { Seo } from "@/components/seo"
 
 interface BlogPost {
   id: string
@@ -190,6 +191,17 @@ export default function BlogPostPage() {
 
   return (
     <div className="container py-16">
+      {post && (
+        <Seo
+          title={post.title}
+          description={post.excerpt}
+          keywords={`${getCategoryLabel(post.category)}, ${post.title.split(" ").slice(0, 5).join(", ")}`}
+          canonical={`https://gorillalabs.dev/blog/${post.slug}`}
+          type="article"
+          author={post.author}
+          ogImage={post.coverImage}
+        />
+      )}
       <Link
         href="/blog"
         className="mb-8 inline-flex items-center text-sm font-medium text-muted-foreground hover:text-foreground"

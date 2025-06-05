@@ -11,7 +11,8 @@ import Image from "next/image"
 import { useCart } from "@/context/cart-context"
 import { useToast } from "@/hooks/use-toast"
 import { useLanguage } from "@/context/language-context"
-import { getServiceById, type Service } from "@/lib/services"
+import { getServiceById, getServiceKeywords, getServiceSchema, type Service } from "@/lib/services"
+import { Seo } from "@/components/seo"
 
 export default function ServiceDetailPage() {
   const params = useParams()
@@ -92,6 +93,26 @@ export default function ServiceDetailPage() {
 
   return (
     <div className="container mx-auto py-8">
+      {service && (
+        <Seo
+          title={`${service.title[languageContext.language] || service.title.en}`}
+          description={`${service.fullDescription[languageContext.language] || service.fullDescription.en} Precio desde $${service.price}${service.id === "3" ? "/hora" : ""}. ${service.features.slice(0, 2).join(" y ")}.`}
+          keywords={getServiceKeywords(service.id)}
+          canonical={`https://gorillalabs.dev/services/${service.id}`}
+          type="service"
+          price={service.price.toString()}
+          technologies={service.features}
+          language={languageContext.language}
+        />
+      )}
+      {service && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(getServiceSchema(service)),
+          }}
+        />
+      )}
       <Link href="/services" className="text-primary hover:underline mb-4 inline-flex items-center gap-2">
         <ArrowLeft className="h-4 w-4" />
         Back to Services
