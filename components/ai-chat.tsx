@@ -38,6 +38,8 @@ export default function AIChat() {
         text:
           language === "en"
             ? "Hello! I'm Gorilla-Labs AI assistant. How can I help you today? Feel free to ask about our services, pricing, or any project you have in mind!"
+            : language === "zh"
+            ? "你好！我是 Gorilla-Labs AI 助手。今天我能为您做些什么？欢迎询问我们的服务、价格或您心中的任何项目！"
             : "¡Hola! Soy el asistente de IA de Gorilla-Labs. ¿Cómo puedo ayudarte hoy? ¡Pregúntame sobre nuestros servicios, precios o cualquier proyecto que tengas en mente!",
         timestamp: new Date(),
       }
@@ -91,6 +93,8 @@ export default function AIChat() {
           const finalFallback =
             language === "en"
               ? "I'm experiencing technical difficulties. Please contact our team directly at info@gorillabs.dev or call +52 (656) 573 1023 for immediate assistance."
+              : language === "zh"
+              ? "我遇到技术困难。请直接联系我们的团队 info@gorillabs.dev 或致电 +52 (656) 573 1023 以获得即时帮助。"
               : "Estoy experimentando dificultades técnicas. Por favor contacta directamente a nuestro equipo en info@gorillabs.dev o llama al +52 (656) 573 1023 para asistencia inmediata."
 
           setTimeout(() => {
@@ -175,6 +179,8 @@ export default function AIChat() {
               <p className="text-sm text-center break-words w-full">
                 {language === "en"
                   ? "Hello 👋, we're here 😊"
+                  : language === "zh"
+                  ? "你好 👋，我们在这里 😊"
                   : "Hola 👋, aquí estamos 😊"}
               </p>
               {/* Arrow pointing to chat button */}
@@ -203,7 +209,11 @@ export default function AIChat() {
         >
           <CardHeader className="flex flex-row items-center justify-between space-y-0 p-4 bg-gradient-to-r from-yellow-500 to-orange-500 text-white rounded-t-lg">
             <CardTitle className="text-sm font-medium">
-              {language === "en" ? "Gorilla-Labs AI Assistant" : "Asistente IA de Gorilla-Labs"}
+              {language === "en" 
+                ? "Gorilla-Labs AI Assistant" 
+                : language === "zh"
+                ? "Gorilla-Labs AI 助手"
+                : "Asistente IA de Gorilla-Labs"}
             </CardTitle>
             <div className="flex gap-1">
               <Button
@@ -299,7 +309,12 @@ export default function AIChat() {
               <CardFooter className="p-4 pt-0">
                 <form onSubmit={handleSendMessage} className="flex w-full gap-2">
                   <Input
-                    placeholder={language === "en" ? "Type your message..." : "Escribe tu mensaje..."}
+                    placeholder={
+                      language === "en" 
+                        ? "Type your message..." 
+                        : language === "zh"
+                        ? "输入您的消息..."
+                        : "Escribe tu mensaje..."}
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     className="flex-1"

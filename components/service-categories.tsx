@@ -5,43 +5,16 @@ import Link from "next/link"
 import { Card, CardContent } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useLanguage } from "@/context/language-context"
-import { Smartphone, ShoppingBag, TrendingUp, Factory, Code } from "lucide-react"
+import { Smartphone, ShoppingBag, TrendingUp, Factory, Code, Brain, ArrowRight } from "lucide-react"
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
-import confetti from "canvas-confetti"
+import { SectionHeader, SectionContainer } from "@/components/ui/section"
+import { MobileCard, TouchButton } from "@/components/ui/mobile-optimizations"
+import { motion } from "framer-motion"
 
 const ServiceCategories = () => {
   const { translations } = useLanguage()
   const [activeTab, setActiveTab] = useState("all")
   const sectionRef = useRef(null)
-  const [hasTriggeredConfetti, setHasTriggeredConfetti] = useState(false)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const [entry] = entries
-        if (entry.isIntersecting && !hasTriggeredConfetti) {
-          // Trigger confetti when the section comes into view
-          confetti({
-            particleCount: 100,
-            spread: 70,
-            origin: { y: 0.6 },
-          })
-          setHasTriggeredConfetti(true)
-        }
-      },
-      { threshold: 0.3 }, // Trigger when 30% of the element is visible
-    )
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current)
-      }
-    }
-  }, [hasTriggeredConfetti])
 
   const categories = [
     {
@@ -81,9 +54,9 @@ const ServiceCategories = () => {
     },
     {
       id: "ai-implementation",
-      icon: <Code className="h-10 w-10 text-primary" />,
-      title: translations.services.aiImplementation || "IA Implementation",
-      description: translations.services.aiImplementationDesc || "Integrate AI solutions into your business processes",
+      icon: <Brain className="h-10 w-10 text-neon-blue" />,
+      title: "AI Implementation",
+      description: "Integrate AI solutions into your business processes",
       link: "/services/ai-implementation",
     },
   ]
@@ -108,7 +81,7 @@ const ServiceCategories = () => {
   }
 
   const getFullDescription = (categoryId: string) => {
-    const descriptions = {
+    const descriptions: Record<string, string> = {
       "mobile-app":
         "Transform your business with cutting-edge mobile applications. We develop native iOS and Android apps, as well as cross-platform solutions using React Native and Flutter. Our mobile apps are designed for performance, user experience, and scalability.",
       ecommerce:
@@ -126,7 +99,7 @@ const ServiceCategories = () => {
   }
 
   const getServicePrice = (categoryId: string) => {
-    const prices = {
+    const prices: Record<string, number> = {
       "mobile-app": 2999,
       ecommerce: 1999,
       marketing: 799,
@@ -138,7 +111,7 @@ const ServiceCategories = () => {
   }
 
   const getServiceImage = (categoryId: string) => {
-    const images = {
+    const images: Record<string, string> = {
       "mobile-app": "https://res.cloudinary.com/dgmmzh8nb/image/upload/v1748983652/hxuxxifnwc6jsxrxbmqj.png",
       ecommerce: "https://res.cloudinary.com/dgmmzh8nb/image/upload/v1748983470/c29i1t0ne1rnmjwjpjtf.png",
       marketing: "/placeholder.svg?height=400&width=600",
@@ -150,7 +123,7 @@ const ServiceCategories = () => {
   }
 
   const getServiceFeatures = (categoryId: string) => {
-    const features = {
+    const features: Record<string, string[]> = {
       "mobile-app": [
         "Native iOS and Android development",
         "Cross-platform solutions (React Native/Flutter)",
@@ -219,11 +192,13 @@ const ServiceCategories = () => {
     activeTab === "all" ? categories : categories.filter((category) => category.id === activeTab)
 
   return (
-    <div className="container px-4 md:px-6" ref={sectionRef}>
-      <div className="mb-10 text-center">
-        <h2 className="mb-2 text-2xl md:text-3xl font-bold">{translations.services.title}</h2>
-        <p className="mx-auto max-w-2xl text-muted-foreground">{translations.services.subtitle}</p>
-      </div>
+    <SectionContainer maxWidth="xl" className="py-16">
+      <SectionHeader
+        subtitle="Our Services"
+        title={translations.services.title}
+        description={translations.services.subtitle}
+        centered={true}
+      />
 
       <Tabs defaultValue="all" value={activeTab} onValueChange={setActiveTab}>
         <div className="relative">
@@ -239,40 +214,75 @@ const ServiceCategories = () => {
           </ScrollArea>
         </div>
 
-        <TabsContent value={activeTab} className="mt-6">
-          {/* Desktop View */}
-          <div className="hidden md:grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {filteredCategories.map((category) => (
-              <Link key={category.id} href={category.link} onClick={() => handleServiceClick(category)}>
-                <Card className="service-card h-full transition-all duration-300 hover:border-primary">
-                  <CardContent className="flex h-full flex-col items-center p-6 text-center">
-                    <div className="mb-4 rounded-full bg-primary/10 p-3">{category.icon}</div>
-                    <h3 className="mb-2 text-xl font-bold">{category.title}</h3>
-                    <p className="flex-1 text-muted-foreground">{category.description}</p>
-                  </CardContent>
-                </Card>
-              </Link>
-            ))}
-          </div>
-
-          {/* Mobile View - 2 per row grid */}
-          <div className="md:hidden">
-            <div className="grid grid-cols-2 gap-4">
-              {filteredCategories.map((category) => (
-                <Link key={category.id} href={category.link} onClick={() => handleServiceClick(category)}>
-                  <Card className="service-card transition-all duration-300 hover:border-primary">
-                    <CardContent className="flex flex-col items-center p-4 text-center">
-                      <div className="mb-3 rounded-full bg-primary/10 p-2">{category.icon}</div>
-                      <h3 className="text-sm font-bold">{category.title}</h3>
-                    </CardContent>
-                  </Card>
+        <TabsContent value={activeTab} className="mt-8">
+          {/* Unified responsive grid */}
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {filteredCategories.map((category, index) => (
+              <motion.div
+                key={category.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="h-full"
+              >
+                <Link href={category.link} onClick={() => handleServiceClick(category)}>
+                  <MobileCard 
+                    interactive={true}
+                    className="h-full group hover:border-gorilla-yellow/50 hover:shadow-lg hover:shadow-gorilla-yellow/10 transition-all duration-300"
+                  >
+                    <div className="flex flex-col items-center text-center h-full">
+                      {/* Icon with improved styling */}
+                      <div className="mb-6 p-4 rounded-2xl bg-gradient-to-br from-gorilla-yellow/10 to-neon-blue/10 group-hover:from-gorilla-yellow/20 group-hover:to-neon-blue/20 transition-all duration-300">
+                        <div className="text-gorilla-yellow group-hover:scale-110 transition-transform duration-300">
+                          {category.icon}
+                        </div>
+                      </div>
+                      
+                      {/* Content */}
+                      <div className="flex-1 flex flex-col">
+                        <h3 className="text-xl font-bold text-white mb-3 group-hover:text-gorilla-yellow transition-colors duration-300">
+                          {category.title}
+                        </h3>
+                        <p className="text-text-muted-dark leading-relaxed flex-1 mb-4">
+                          {category.description}
+                        </p>
+                        
+                        {/* CTA */}
+                        <div className="flex items-center justify-center text-gorilla-yellow group-hover:text-white transition-colors duration-300">
+                          <span className="text-sm font-medium mr-2">Learn More</span>
+                          <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
+                        </div>
+                      </div>
+                    </div>
+                  </MobileCard>
                 </Link>
-              ))}
-            </div>
+              </motion.div>
+            ))}
           </div>
         </TabsContent>
       </Tabs>
-    </div>
+      
+      {/* Call to Action */}
+      <div className="mt-12 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
+        <p className="text-text-muted-dark mb-6 text-lg">
+          Ready to transform your business with our services?
+        </p>
+        <Link href="/contact">
+          <TouchButton size="lg" className="bg-gorilla-yellow text-gorilla-black hover:bg-yellow-400 font-semibold">
+            Get Started Today
+            <ArrowRight className="ml-2 h-5 w-5" />
+          </TouchButton>
+        </Link>
+        </motion.div>
+      </div>
+    </SectionContainer>
   )
 }
 

@@ -1,6 +1,6 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
+import { Inter, JetBrains_Mono } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import Header from "@/components/header"
@@ -10,9 +10,34 @@ import { Toaster } from "@/components/ui/toaster"
 import { CartProvider } from "@/context/cart-context"
 import { AuthProvider } from "@/context/auth-context"
 import { LanguageProvider } from "@/context/language-context"
+import { MobileOptimizations } from "@/components/ui/mobile-optimizations"
 import Script from "next/script"
 
-const inter = Inter({ subsets: ["latin"] })
+const inter = Inter({ 
+  subsets: ["latin"],
+  variable: "--font-primary",
+  display: "swap",
+})
+
+const jetbrainsMono = JetBrains_Mono({ 
+  subsets: ["latin"],
+  variable: "--font-code",
+  display: "swap",
+})
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  minimumScale: 1,
+  userScalable: true,
+  viewportFit: 'cover', // For devices with notches
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#FFD700' },
+    { media: '(prefers-color-scheme: dark)', color: '#000000' }
+  ],
+  colorScheme: 'dark light'
+}
 
 export const metadata: Metadata = {
   title: "Gorilla Labs | Desarrollo de Apps y Software IA - El Paso TX & Cd. Juárez",
@@ -23,7 +48,7 @@ export const metadata: Metadata = {
   authors: [{ name: "Gorilla Labs" }],
   creator: "Gorilla Labs",
   publisher: "Gorilla Labs",
-  viewport: "width=device-width, initial-scale=1, maximum-scale=5",
+
   robots: "index, follow",
   alternates: {
     canonical: "https://gorilla-labs.com",
@@ -167,7 +192,7 @@ export default function RootLayout({
           `}
         </Script>
       </head>
-      <body className={`${inter.className} w-full overflow-x-hidden`}>
+      <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans w-full overflow-x-hidden`}>
 
 
         <ThemeProvider attribute="class" defaultTheme="light">
@@ -179,6 +204,7 @@ export default function RootLayout({
                   <main className="flex-1 w-full">{children}</main>
                   <Footer />
                 </div>
+                <MobileOptimizations />
                 <AIChat />
                 <Toaster />
               </CartProvider>

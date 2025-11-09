@@ -22,7 +22,7 @@ export default function WebsiteContentPage() {
   const [heroContent, setHeroContent] = useState({
     title:
       language === "en"
-        ? "We Transform Your Ideas into Technological Solutions"
+        ? "Your Goal is Our!"
         : "Transformamos tus Ideas en Soluciones Tecnológicas",
     description:
       language === "en"

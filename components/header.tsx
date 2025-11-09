@@ -63,19 +63,33 @@ const Header = () => {
   }, [])
 
   const navLinks = [
-    { href: "/", label: translations.nav.home },
-    { href: "/services", label: translations.nav.services },
-    { href: "/portfolio", label: translations.nav.portfolio },
-    // { href: "/blog", label: translations.nav.blog },
-    // { href: "/about", label: translations.nav.about },
-    { href: "/contact", label: translations.nav.contact },
+    { href: "/#hero", label: translations.nav.home, scroll: true },
+    { href: "/#ai-showcase", label: language === "es" ? "IA" : language === "zh" ? "AI" : "AI", scroll: true },
+    { href: "/#logistics", label: language === "es" ? "Logística" : language === "zh" ? "物流" : "Logistics", scroll: true },
+    { href: "/#services", label: translations.nav.services, scroll: true },
+    { href: "/#testimonials", label: language === "es" ? "Testimonios" : language === "zh" ? "评价" : "Testimonials", scroll: true },
+    { href: "/#contact", label: translations.nav.contact, scroll: true },
   ]
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string, scroll: boolean) => {
+    if (scroll && href.startsWith("/#")) {
+      e.preventDefault()
+      const id = href.replace("/#", "")
+      const element = document.getElementById(id)
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth", block: "start" })
+        closeMenu()
+      }
+    }
+  }
 
   return (
     <header
+      id="navigation"
       className={`sticky top-0 z-50 w-full border-b backdrop-blur supports-[backdrop-filter]:bg-background/60 transition-all duration-300 ${
         scrolled ? "bg-background/95 shadow-md" : "bg-background/80"
       }`}
+      role="banner"
     >
       <div
         className={`container flex items-center justify-between px-4 md:px-6 transition-all duration-300 ${
@@ -95,18 +109,19 @@ const Header = () => {
 
         {/* Desktop Navigation */}
         {!isMobile && (
-          <nav className="hidden md:flex items-center gap-6">
+          <nav className="hidden md:flex items-center gap-6" role="navigation" aria-label="Main navigation">
             {navLinks.map((link) => (
-              <Link
+              <a
                 key={link.href}
                 href={link.href}
+                onClick={(e) => handleNavClick(e, link.href, link.scroll || false)}
                 className={cn(
-                  "text-sm font-medium transition-colors hover:text-primary",
+                  "text-sm font-medium transition-colors hover:text-primary cursor-pointer",
                   pathname === link.href ? "text-primary" : "text-muted-foreground",
                 )}
               >
                 {link.label}
-              </Link>
+              </a>
             ))}
           </nav>
         )}
@@ -115,14 +130,32 @@ const Header = () => {
         <div className="flex items-center gap-4">
           {/* Only show cart and menu button on mobile, hide others */}
           <div className="hidden md:flex items-center gap-4">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setLanguage(language === "en" ? "es" : "en")}
-              aria-label={language === "en" ? "Switch to Spanish" : "Switch to English"}
-            >
-              <Globe className="h-5 w-5" />
-            </Button>
+            <div className="flex items-center gap-1">
+              <Button
+                variant={language === "en" ? "default" : "ghost"}
+                size="sm"
+                onClick={() => setLanguage("en")}
+                className="h-8 px-2 text-xs"
+              >
+                EN
+              </Button>
+              <Button
+                variant={language === "es" ? "default" : "ghost"}
+                size="sm"
+                onClick={() => setLanguage("es")}
+                className="h-8 px-2 text-xs"
+              >
+                ES
+              </Button>
+              <Button
+                variant={language === "zh" ? "default" : "ghost"}
+                size="sm"
+                onClick={() => setLanguage("zh")}
+                className="h-8 px-2 text-xs"
+              >
+                中文
+              </Button>
+            </div>
 
             <ModeToggle />
 
@@ -178,7 +211,7 @@ const Header = () => {
 
       {/* Mobile Menu - Slide from right */}
       <div
-        className={`fixed inset-y-0 right-0 z-[100] w-[350px] bg-background shadow-xl transform transition-transform duration-300 ease-in-out md:hidden ${
+        className={`fixed inset-y-0 right-0 z-50 w-[350px] bg-background shadow-xl transform transition-transform duration-300 ease-in-out md:hidden ${
           isMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
         style={{
@@ -206,33 +239,64 @@ const Header = () => {
             {/* Navigation Links */}
             <nav className="mb-6">
               {navLinks.map((link) => (
-                <Link
+                <a
                   key={link.href}
                   href={link.href}
+                  onClick={(e) => {
+                    handleNavClick(e, link.href, link.scroll || false)
+                    closeMenu()
+                  }}
                   className={cn(
-                    "block py-3 text-xl font-medium transition-colors hover:text-primary",
+                    "block py-3 text-xl font-medium transition-colors hover:text-primary cursor-pointer",
                     pathname === link.href ? "text-primary" : "text-foreground",
                   )}
-                  onClick={closeMenu}
                 >
                   {link.label}
-                </Link>
+                </a>
               ))}
             </nav>
 
             {/* Action Buttons for Mobile */}
             <div className="pt-4 border-t border-border">
               {/* Language Toggle */}
-              <button
-                className="flex w-full items-center gap-3 text-xl font-medium transition-colors hover:text-primary py-3"
-                onClick={() => {
-                  setLanguage(language === "en" ? "es" : "en")
-                  closeMenu()
-                }}
-              >
-                <Globe className="h-6 w-6" />
-                {language === "en" ? "Cambiar a Español" : "Switch to English"}
-              </button>
+              <div className="flex flex-col gap-2">
+                <span className="text-sm text-muted-foreground mb-1">Language / Idioma / 语言</span>
+                <div className="flex gap-2">
+                  <Button
+                    variant={language === "en" ? "default" : "outline"}
+                    size="sm"
+                    onClick={() => {
+                      setLanguage("en")
+                      closeMenu()
+                    }}
+                    className="flex-1"
+                  >
+                    EN
+                  </Button>
+                  <Button
+                    variant={language === "es" ? "default" : "outline"}
+                    size="sm"
+                    onClick={() => {
+                      setLanguage("es")
+                      closeMenu()
+                    }}
+                    className="flex-1"
+                  >
+                    ES
+                  </Button>
+                  <Button
+                    variant={language === "zh" ? "default" : "outline"}
+                    size="sm"
+                    onClick={() => {
+                      setLanguage("zh")
+                      closeMenu()
+                    }}
+                    className="flex-1"
+                  >
+                    中文
+                  </Button>
+                </div>
+              </div>
 
               {/* Theme Toggle */}
               <div className="flex w-full items-center gap-3 text-xl font-medium py-3">
@@ -292,7 +356,7 @@ const Header = () => {
       {/* Overlay for closing the menu when clicking outside */}
       {isMenuOpen && (
         <div
-          className="fixed inset-0 bg-black/20 backdrop-blur-sm z-[90] md:hidden"
+          className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 md:hidden"
           style={{
             top: "64px",
             visibility: isMenuOpen ? "visible" : "hidden",

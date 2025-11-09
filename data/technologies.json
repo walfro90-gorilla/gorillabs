@@ -1,0 +1,410 @@
+{
+  "technologies": [
+    {
+      "id": "react",
+      "name": "React",
+      "icon": "⚛️",
+      "category": "frontend",
+      "expertiseLevel": 5,
+      "projectCount": 25,
+      "description": "Biblioteca de JavaScript para construir interfaces de usuario",
+      "demoCode": {
+        "language": "jsx",
+        "code": "function Welcome() {\n  return <h1>Hello, Gorilla Labs!</h1>\n}",
+        "description": "Componente React básico"
+      }
+    },
+    {
+      "id": "nextjs",
+      "name": "Next.js",
+      "icon": "▲",
+      "category": "frontend",
+      "expertiseLevel": 5,
+      "projectCount": 20,
+      "description": "Framework de React para producción",
+      "demoCode": {
+        "language": "jsx",
+        "code": "export default function Page() {\n  return <div>Next.js App Router</div>\n}",
+        "description": "Página de Next.js 15"
+      }
+    },
+    {
+      "id": "typescript",
+      "name": "TypeScript",
+      "icon": "📘",
+      "category": "frontend",
+      "expertiseLevel": 5,
+      "projectCount": 30,
+      "description": "JavaScript con tipos estáticos",
+      "demoCode": {
+        "language": "typescript",
+        "code": "interface User {\n  name: string\n  age: number\n}\n\nconst user: User = {\n  name: 'Gorilla',\n  age: 5\n}",
+        "description": "TypeScript con interfaces"
+      }
+    },
+    {
+      "id": "tailwind",
+      "name": "Tailwind CSS",
+      "icon": "🎨",
+      "category": "frontend",
+      "expertiseLevel": 5,
+      "projectCount": 22,
+      "description": "Framework CSS utility-first",
+      "demoCode": {
+        "language": "html",
+        "code": "<div class=\"bg-gorilla-yellow text-gorilla-black p-4 rounded-lg shadow-lg\">\n  Styled with Tailwind\n</div>",
+        "description": "Estilos con Tailwind CSS"
+      }
+    },
+    {
+      "id": "threejs",
+      "name": "Three.js",
+      "icon": "🎮",
+      "category": "frontend",
+      "expertiseLevel": 4,
+      "projectCount": 8,
+      "description": "Biblioteca 3D para WebGL",
+      "demoCode": {
+        "language": "javascript",
+        "code": "const geometry = new THREE.BoxGeometry()\nconst material = new THREE.MeshBasicMaterial({ color: 0xFFD700 })\nconst cube = new THREE.Mesh(geometry, material)\nscene.add(cube)",
+        "description": "Crear un cubo 3D"
+      }
+    },
+    {
+      "id": "nodejs",
+      "name": "Node.js",
+      "icon": "🟢",
+      "category": "backend",
+      "expertiseLevel": 5,
+      "projectCount": 28,
+      "description": "Runtime de JavaScript en el servidor",
+      "demoCode": {
+        "language": "javascript",
+        "code": "const express = require('express')\nconst app = express()\n\napp.get('/', (req, res) => {\n  res.json({ message: 'Hello from Gorilla Labs!' })\n})\n\napp.listen(3000)",
+        "description": "Servidor Express básico"
+      }
+    },
+    {
+      "id": "python",
+      "name": "Python",
+      "icon": "🐍",
+      "category": "backend",
+      "expertiseLevel": 5,
+      "projectCount": 18,
+      "description": "Lenguaje versátil para backend y AI",
+      "demoCode": {
+        "language": "python",
+        "code": "from fastapi import FastAPI\n\napp = FastAPI()\n\n@app.get('/')\ndef read_root():\n    return {'message': 'Hello from Gorilla Labs!'}",
+        "description": "API con FastAPI"
+      }
+    },
+    {
+      "id": "firebase",
+      "name": "Firebase",
+      "icon": "🔥",
+      "category": "backend",
+      "expertiseLevel": 4,
+      "projectCount": 15,
+      "description": "Plataforma de desarrollo de Google",
+      "demoCode": {
+        "language": "javascript",
+        "code": "import { initializeApp } from 'firebase/app'\nimport { getAuth } from 'firebase/auth'\n\nconst app = initializeApp(config)\nconst auth = getAuth(app)",
+        "description": "Inicializar Firebase"
+      }
+    },
+    {
+      "id": "supabase",
+      "name": "Supabase",
+      "icon": "⚡",
+      "category": "backend",
+      "expertiseLevel": 4,
+      "projectCount": 12,
+      "description": "Alternativa open source a Firebase",
+      "demoCode": {
+        "language": "javascript",
+        "code": "import { createClient } from '@supabase/supabase-js'\n\nconst supabase = createClient(url, key)\nconst { data } = await supabase.from('users').select()",
+        "description": "Query con Supabase"
+      }
+    },
+    {
+      "id": "flutter",
+      "name": "Flutter",
+      "icon": "📱",
+      "category": "mobile",
+      "expertiseLevel": 4,
+      "projectCount": 10,
+      "description": "Framework para apps multiplataforma",
+      "demoCode": {
+        "language": "dart",
+        "code": "class MyApp extends StatelessWidget {\n  @override\n  Widget build(BuildContext context) {\n    return MaterialApp(\n      home: Scaffold(\n        body: Center(\n          child: Text('Gorilla Labs')\n        )\n      )\n    );\n  }\n}",
+        "description": "App Flutter básica"
+      }
+    },
+    {
+      "id": "react-native",
+      "name": "React Native",
+      "icon": "📲",
+      "category": "mobile",
+      "expertiseLevel": 4,
+      "projectCount": 14,
+      "description": "React para aplicaciones móviles",
+      "demoCode": {
+        "language": "jsx",
+        "code": "import { View, Text } from 'react-native'\n\nexport default function App() {\n  return (\n    <View>\n      <Text>Gorilla Labs Mobile</Text>\n    </View>\n  )\n}",
+        "description": "App React Native"
+      }
+    },
+    {
+      "id": "gemini",
+      "name": "Gemini AI",
+      "icon": "🤖",
+      "category": "ai",
+      "expertiseLevel": 5,
+      "projectCount": 8,
+      "description": "IA de Google para aplicaciones",
+      "demoCode": {
+        "language": "javascript",
+        "code": "const model = genAI.getGenerativeModel({ model: 'gemini-pro' })\nconst result = await model.generateContent('Hello Gorilla Labs')\nconst response = result.response.text()",
+        "description": "Generar texto con Gemini"
+      }
+    },
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "icon": "🧠",
+      "category": "ai",
+      "expertiseLevel": 4,
+      "projectCount": 6,
+      "description": "APIs de IA de OpenAI",
+      "demoCode": {
+        "language": "javascript",
+        "code": "const completion = await openai.chat.completions.create({\n  model: 'gpt-4',\n  messages: [{ role: 'user', content: 'Hello!' }]\n})",
+        "description": "Chat con GPT-4"
+      }
+    },
+    {
+      "id": "tensorflow",
+      "name": "TensorFlow",
+      "icon": "🔬",
+      "category": "ai",
+      "expertiseLevel": 3,
+      "projectCount": 5,
+      "description": "Framework de machine learning",
+      "demoCode": {
+        "language": "python",
+        "code": "import tensorflow as tf\n\nmodel = tf.keras.Sequential([\n  tf.keras.layers.Dense(128, activation='relu'),\n  tf.keras.layers.Dense(10, activation='softmax')\n])",
+        "description": "Red neuronal con TensorFlow"
+      }
+    },
+    {
+      "id": "docker",
+      "name": "Docker",
+      "icon": "🐳",
+      "category": "devops",
+      "expertiseLevel": 4,
+      "projectCount": 20,
+      "description": "Contenedores para aplicaciones",
+      "demoCode": {
+        "language": "dockerfile",
+        "code": "FROM node:18-alpine\nWORKDIR /app\nCOPY package*.json ./\nRUN npm install\nCOPY . .\nEXPOSE 3000\nCMD [\"npm\", \"start\"]",
+        "description": "Dockerfile para Node.js"
+      }
+    },
+    {
+      "id": "kubernetes",
+      "name": "Kubernetes",
+      "icon": "☸️",
+      "category": "devops",
+      "expertiseLevel": 3,
+      "projectCount": 8,
+      "description": "Orquestación de contenedores",
+      "demoCode": {
+        "language": "yaml",
+        "code": "apiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: gorilla-app\nspec:\n  replicas: 3\n  selector:\n    matchLabels:\n      app: gorilla",
+        "description": "Deployment de Kubernetes"
+      }
+    },
+    {
+      "id": "github-actions",
+      "name": "GitHub Actions",
+      "icon": "⚙️",
+      "category": "devops",
+      "expertiseLevel": 4,
+      "projectCount": 18,
+      "description": "CI/CD automatizado",
+      "demoCode": {
+        "language": "yaml",
+        "code": "name: Deploy\non: [push]\njobs:\n  deploy:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v2\n      - run: npm install\n      - run: npm run build",
+        "description": "Workflow de GitHub Actions"
+      }
+    },
+    {
+      "id": "vue",
+      "name": "Vue.js",
+      "icon": "💚",
+      "category": "frontend",
+      "expertiseLevel": 4,
+      "projectCount": 12,
+      "description": "Framework progresivo para interfaces de usuario",
+      "demoCode": {
+        "language": "vue",
+        "code": "<template>\n  <div class=\"hello\">\n    <h1>{{ msg }}</h1>\n  </div>\n</template>\n\n<script>\nexport default {\n  data() {\n    return {\n      msg: 'Hello Gorilla Labs!'\n    }\n  }\n}\n</script>",
+        "description": "Componente Vue básico"
+      }
+    },
+    {
+      "id": "angular",
+      "name": "Angular",
+      "icon": "🅰️",
+      "category": "frontend",
+      "expertiseLevel": 3,
+      "projectCount": 8,
+      "description": "Plataforma para aplicaciones web",
+      "demoCode": {
+        "language": "typescript",
+        "code": "import { Component } from '@angular/core';\n\n@Component({\n  selector: 'app-hello',\n  template: '<h1>Hello {{name}}!</h1>'\n})\nexport class HelloComponent {\n  name = 'Gorilla Labs';\n}",
+        "description": "Componente Angular"
+      }
+    },
+    {
+      "id": "svelte",
+      "name": "Svelte",
+      "icon": "🧡",
+      "category": "frontend",
+      "expertiseLevel": 3,
+      "projectCount": 5,
+      "description": "Framework compilado para web apps",
+      "demoCode": {
+        "language": "svelte",
+        "code": "<script>\n  let name = 'Gorilla Labs';\n</script>\n\n<h1>Hello {name}!</h1>\n\n<style>\n  h1 {\n    color: #FFD700;\n  }\n</style>",
+        "description": "Componente Svelte"
+      }
+    },
+    {
+      "id": "graphql",
+      "name": "GraphQL",
+      "icon": "🔗",
+      "category": "backend",
+      "expertiseLevel": 4,
+      "projectCount": 15,
+      "description": "Lenguaje de consulta para APIs",
+      "demoCode": {
+        "language": "graphql",
+        "code": "type User {\n  id: ID!\n  name: String!\n  email: String!\n}\n\ntype Query {\n  users: [User!]!\n  user(id: ID!): User\n}\n\ntype Mutation {\n  createUser(name: String!, email: String!): User!\n}",
+        "description": "Schema GraphQL"
+      }
+    },
+    {
+      "id": "redis",
+      "name": "Redis",
+      "icon": "🔴",
+      "category": "backend",
+      "expertiseLevel": 4,
+      "projectCount": 20,
+      "description": "Base de datos en memoria",
+      "demoCode": {
+        "language": "javascript",
+        "code": "const redis = require('redis');\nconst client = redis.createClient();\n\n// Set value\nawait client.set('key', 'value');\n\n// Get value\nconst value = await client.get('key');\nconsole.log(value);",
+        "description": "Cliente Redis básico"
+      }
+    },
+    {
+      "id": "elasticsearch",
+      "name": "Elasticsearch",
+      "icon": "🔍",
+      "category": "backend",
+      "expertiseLevel": 3,
+      "projectCount": 8,
+      "description": "Motor de búsqueda y análisis",
+      "demoCode": {
+        "language": "javascript",
+        "code": "const { Client } = require('@elastic/elasticsearch');\nconst client = new Client({ node: 'http://localhost:9200' });\n\n// Search documents\nconst response = await client.search({\n  index: 'products',\n  body: {\n    query: {\n      match: { name: 'gorilla' }\n    }\n  }\n});",
+        "description": "Búsqueda con Elasticsearch"
+      }
+    },
+    {
+      "id": "swift",
+      "name": "Swift",
+      "icon": "🦉",
+      "category": "mobile",
+      "expertiseLevel": 3,
+      "projectCount": 6,
+      "description": "Lenguaje para desarrollo iOS",
+      "demoCode": {
+        "language": "swift",
+        "code": "import UIKit\n\nclass ViewController: UIViewController {\n    override func viewDidLoad() {\n        super.viewDidLoad()\n        \n        let label = UILabel()\n        label.text = \"Hello Gorilla Labs!\"\n        label.textAlignment = .center\n        view.addSubview(label)\n    }\n}",
+        "description": "ViewController iOS básico"
+      }
+    },
+    {
+      "id": "kotlin",
+      "name": "Kotlin",
+      "icon": "🤖",
+      "category": "mobile",
+      "expertiseLevel": 3,
+      "projectCount": 7,
+      "description": "Lenguaje moderno para Android",
+      "demoCode": {
+        "language": "kotlin",
+        "code": "class MainActivity : AppCompatActivity() {\n    override fun onCreate(savedInstanceState: Bundle?) {\n        super.onCreate(savedInstanceState)\n        setContentView(R.layout.activity_main)\n        \n        val textView = findViewById<TextView>(R.id.textView)\n        textView.text = \"Hello Gorilla Labs!\"\n    }\n}",
+        "description": "Activity Android en Kotlin"
+      }
+    },
+    {
+      "id": "pytorch",
+      "name": "PyTorch",
+      "icon": "🔥",
+      "category": "ai",
+      "expertiseLevel": 4,
+      "projectCount": 10,
+      "description": "Framework de deep learning",
+      "demoCode": {
+        "language": "python",
+        "code": "import torch\nimport torch.nn as nn\n\nclass SimpleNet(nn.Module):\n    def __init__(self):\n        super(SimpleNet, self).__init__()\n        self.fc1 = nn.Linear(784, 128)\n        self.fc2 = nn.Linear(128, 10)\n        \n    def forward(self, x):\n        x = torch.relu(self.fc1(x))\n        x = self.fc2(x)\n        return x\n\nmodel = SimpleNet()",
+        "description": "Red neuronal con PyTorch"
+      }
+    },
+    {
+      "id": "huggingface",
+      "name": "Hugging Face",
+      "icon": "🤗",
+      "category": "ai",
+      "expertiseLevel": 4,
+      "projectCount": 6,
+      "description": "Plataforma de modelos de IA",
+      "demoCode": {
+        "language": "python",
+        "code": "from transformers import pipeline\n\n# Create a text generation pipeline\ngenerator = pipeline('text-generation', model='gpt2')\n\n# Generate text\nresult = generator('Hello Gorilla Labs', max_length=50)\nprint(result[0]['generated_text'])",
+        "description": "Generación de texto con Transformers"
+      }
+    },
+    {
+      "id": "aws",
+      "name": "AWS",
+      "icon": "☁️",
+      "category": "devops",
+      "expertiseLevel": 5,
+      "projectCount": 25,
+      "description": "Servicios de nube de Amazon",
+      "demoCode": {
+        "language": "javascript",
+        "code": "const AWS = require('aws-sdk');\nconst s3 = new AWS.S3();\n\n// Upload file to S3\nconst params = {\n  Bucket: 'gorilla-labs-bucket',\n  Key: 'file.txt',\n  Body: 'Hello from Gorilla Labs!'\n};\n\ns3.upload(params, (err, data) => {\n  if (err) console.log(err);\n  else console.log('Upload Success', data.Location);\n});",
+        "description": "Upload a S3 con AWS SDK"
+      }
+    },
+    {
+      "id": "terraform",
+      "name": "Terraform",
+      "icon": "🏗️",
+      "category": "devops",
+      "expertiseLevel": 4,
+      "projectCount": 12,
+      "description": "Infraestructura como código",
+      "demoCode": {
+        "language": "hcl",
+        "code": "resource \"aws_instance\" \"gorilla_server\" {\n  ami           = \"ami-0c55b159cbfafe1d0\"\n  instance_type = \"t2.micro\"\n  \n  tags = {\n    Name = \"Gorilla Labs Server\"\n    Environment = \"production\"\n  }\n}",
+        "description": "Instancia EC2 con Terraform"
+      }
+    }
+  ]
+}

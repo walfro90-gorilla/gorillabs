@@ -40,27 +40,56 @@ export default function ContactPage() {
     e.preventDefault()
     setLoading(true)
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500))
+    try {
+      const response = await fetch("/api/contacts", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          message: `${formData.subject}\n\nTipo de servicio: ${formData.serviceType}\n\n${formData.message}`,
+        }),
+      })
 
-    toast({
-      title: language === "en" ? "Message Sent" : "Mensaje Enviado",
-      description:
-        language === "en"
-          ? "We'll get back to you as soon as possible!"
-          : "¡Nos pondremos en contacto contigo lo antes posible!",
-    })
+      if (response.ok) {
+        toast({
+          title: language === "en" ? "Message Sent" : language === "zh" ? "消息已发送" : "Mensaje Enviado",
+          description:
+            language === "en"
+              ? "We'll get back to you as soon as possible!"
+              : language === "zh"
+              ? "我们会尽快回复您！"
+              : "¡Nos pondremos en contacto contigo lo antes posible!",
+        })
 
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      subject: "",
-      message: "",
-      serviceType: "web",
-    })
-
-    setLoading(false)
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          subject: "",
+          message: "",
+          serviceType: "web",
+        })
+      } else {
+        throw new Error("Failed to send message")
+      }
+    } catch (error) {
+      toast({
+        title: language === "en" ? "Error" : language === "zh" ? "错误" : "Error",
+        description:
+          language === "en"
+            ? "Failed to send message. Please try again."
+            : language === "zh"
+            ? "发送消息失败。请重试。"
+            : "No se pudo enviar el mensaje. Por favor intenta de nuevo.",
+        variant: "destructive",
+      })
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -75,10 +104,14 @@ export default function ContactPage() {
         language={language}
       />
       <div className="mb-10 text-center">
-        <h1 className="mb-2 text-4xl font-bold">{language === "en" ? "Contact Us" : "Contáctanos"}</h1>
+        <h1 className="mb-2 text-4xl font-bold">
+          {language === "en" ? "Contact Us" : language === "zh" ? "联系我们" : "Contáctanos"}
+        </h1>
         <p className="mx-auto max-w-2xl text-muted-foreground">
           {language === "en"
             ? "Have a question or want to discuss a project? Get in touch with our team and we'll get back to you as soon as possible."
+            : language === "zh"
+            ? "有问题或想讨论项目？联系我们的团队，我们会尽快回复您。"
             : "¿Tienes una pregunta o quieres discutir un proyecto? Ponte en contacto con nuestro equipo y te responderemos lo antes posible."}
         </p>
       </div>

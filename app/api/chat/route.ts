@@ -85,7 +85,7 @@ export async function POST(request: NextRequest) {
     const { message, language } = await request.json()
 
     // Try Google Gemini API first
-    const apiKey = process.env.GOOGLE_API_KEY || "AIzaSyBbSSgrCMht1xHSGPSO1QSauy6ROYLn-_U"
+    const apiKey = process.env.GOOGLE_API_KEY
 
     if (apiKey) {
       try {

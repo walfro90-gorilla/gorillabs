@@ -37,7 +37,7 @@ export default function LanguagesPage() {
     },
     // Hero
     hero: {
-      title: "We Transform Your Ideas into Technological Solutions",
+      title: "Your Goal is Our!",
       phrase1: "Web Development",
       phrase2: "Mobile Applications",
       phrase3: "E-commerce Solutions",
